@@ -16,6 +16,7 @@ $(document).ready(function () {
         window.location.href = '/account';
     });
     $('#google-button').click(function (e) {
+        
         e.preventDefault();
         window.location.href = '/account';
     });
