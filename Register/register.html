@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Register/css/app.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="main">
+        <div id="header">
+            <h1 class="Home_text"><a href="index.html">AUCTIONKOI</a></h1>
+            <!-- Begin NAV -->
+            <div class="header_nav-left">
+                <div class="header_nav-flex">
+                    <a href="#" class="header_nav-items">
+                        <i class="fa-solid fa-house"></i>
+                        <span class="header_nav-text">Home</span>
+                    </a>
+                    <a href="#" class="header_nav-items">
+                        <?xml version="1.0" ?>
+                        <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <g>
+                                <path d="M0 0h24v24H0z" fill="none" />
+                                <path d="M14 20v2H2v-2h12zM14.586.686l7.778 7.778L20.95 9.88l-1.06-.354L17.413 12l5.657 5.657-1.414 1.414L16 13.414l-2.404 2.404.283 1.132-1.415 1.414-7.778-7.778 1.415-1.414 1.13.282 6.294-6.293-.353-1.06L14.586.686zm.707 3.536l-7.071 7.07 3.535 3.536 7.071-7.07-3.535-3.536z" />
+                            </g>
+                        </svg>
+                        <span class="header_nav-text">Auction</span>
+                    </a>
+                    <a href="#" class="header_nav-items">
+                        <i class="fa-regular fa-circle-question"></i>
+                        <span class="header_nav-text">Help</span>
+                    </a>
+                </div>
+            </div>
+            <div class="header_nav-right">
+                <a href="#" class="header_nav-items">Login</a>
+                <a href="#" class="header_nav-items active">Register</a>
+            </div>
+            <!-- End NAV -->
+        </div> 
+        <div id="content">
+                <!-- Begin Register Form -->
+            <div id="register-container">
+                <h2>Register</h2>
+                <form id="register-form">
+                    <div class="form-group names-group">
+                        <div class="name-field">
+                            <label for="first-name">First Name</label>
+                            <input placeholder="First Name" type="text" id="first-name" name="first-name" required>
+                        </div>
+                        <div class="name-field">
+                            <label for="last-name">Last Name</label>
+                            <input placeholder="Last Name" type="text" id="last-name" name="last-name" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input placeholder="Username" type="text" id="username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input placeholder="Email" type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input placeholder="Password" type="password" id="password" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm-password">Confirm Password</label>
+                        <input placeholder="Confirm Password" type="password" id="confirm-password" name="confirm-password" required>
+                    </div>
+                    <button type="submit" class="submit-button">Register</button>
+                </form>
+            </div>
+            <!-- End Register Form -->
+        </div>       
+    </div>
+    <script src="/Register/js/app.js"></script>
+</body>
+</html>
