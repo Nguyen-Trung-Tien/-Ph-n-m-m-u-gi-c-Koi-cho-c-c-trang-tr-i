@@ -5,10 +5,28 @@
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
 }
-
 body {
-    background-color: #f5f5f5;
-    color: #333;
+    background-color: #f8f9fa;
+}
+.hero-section {
+    background: url(koi_bg.jpg) no-repeat center center;
+    background-size: cover;
+    color: white;
+    padding: 100px 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+.hero-section h1 {
+    font-size: 3rem;
+    font-weight: bold;
+}
+.card {
+    transition: transform 0.2s;
+}
+.card:hover {
+    transform: scale(1.05);
+}
+.about-section img {
+    border-radius: 15px;
 }
 
 /* Header */
