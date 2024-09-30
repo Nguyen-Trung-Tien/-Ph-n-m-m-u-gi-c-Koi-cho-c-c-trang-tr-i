@@ -1,0 +1,248 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+/* Header */
+header {
+    background-color: #003366;
+    padding: 20px 0;
+    text-align: center;
+    color: white;
+}
+
+header a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+header a:hover {
+    text-decoration: underline;
+}
+
+/* Hero Section */
+.hero-section {
+    background: url(koi_bg.jpg) no-repeat center center/cover;
+    padding: 100px 0;
+    color: white;
+    text-align: center;
+}
+
+.hero-section h1 {
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.hero-section p {
+    font-size: 1.25rem;
+    margin-bottom: 30px;
+}
+
+.hero-section .btn {
+    font-size: 1.25rem;
+    padding: 12px 30px;
+    border-radius: 30px;
+}
+
+.hero-section .btn-primary {
+    background-color: #ff6600;
+    border: none;
+}
+
+.hero-section .btn-primary:hover {
+    background-color: #cc5200;
+}
+
+.hero-section .btn-outline-light {
+    color: #fff;
+    border-color: #fff;
+}
+
+.hero-section .btn-outline-light:hover {
+    background-color: #fff;
+    color: #003366;
+}
+
+/* About Section */
+.about-section {
+    background-color: #fff;
+    padding: 60px 0;
+}
+
+.about-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+}
+
+.about-section p {
+    font-size: 1.125rem;
+    margin-bottom: 20px;
+    line-height: 1.8;
+}
+
+.about-section .btn {
+    font-size: 1.125rem;
+    padding: 10px 25px;
+    border-radius: 25px;
+}
+
+.about-section img {
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Blog & Terms Section */
+.blog-terms {
+    background-color: #f0f8ff;
+    padding: 60px 0;
+}
+
+.blog-terms h2 {
+    font-size: 2.25rem;
+    margin-bottom: 40px;
+    color: #003366;
+}
+
+.blog-terms .btn {
+    font-size: 1.25rem;
+    padding: 12px 35px;
+    border-radius: 30px;
+}
+
+.blog-terms .btn-outline-dark {
+    color: #003366;
+    border-color: #003366;
+}
+
+.blog-terms .btn-outline-dark:hover {
+    background-color: #003366;
+    color: white;
+}
+
+/* Featured Farms & Auctions */
+.featured-farms, .featured-auctions {
+    background-color: #fff;
+    padding: 60px 0;
+}
+
+.featured-farms h2, .featured-auctions h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+}
+
+.featured-farms .card, .featured-auctions .card {
+    border: none;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.featured-farms .card:hover, .featured-auctions .card:hover {
+    transform: translateY(-10px);
+}
+
+.featured-farms .card-img-top, .featured-auctions .card-img-top {
+    border-radius: 10px;
+}
+
+.featured-farms .btn, .featured-auctions .btn {
+    font-size: 1.125rem;
+    padding: 10px 20px;
+    border-radius: 25px;
+}
+
+/* Auction Process Section */
+.auction-process {
+    background-color: #f9f9f9;
+    padding: 60px 0;
+}
+
+.auction-process h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+}
+
+.auction-process .col-md-3 {
+    text-align: center;
+}
+
+.auction-process i {
+    color: #ff6600;
+    margin-bottom: 20px;
+}
+
+.auction-process h5 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+/* Profile Management */
+.profile-management {
+    background-color: #fff;
+    padding: 20px 0;
+}
+
+.profile-management h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+}
+
+.profile-management .btn {
+    font-size: 1.25rem;
+    padding: 12px 35px;
+    border-radius: 30px;
+}
+
+/* Footer */
+footer {
+    background-color: #003366;
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+}
+
+footer a {
+    color: white;
+    margin: 0 10px;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-section p {
+        font-size: 1rem;
+    }
+
+    .about-section h2, .auction-process h2, .profile-management h2 {
+        font-size: 2rem;
+    }
+
+    .about-section p {
+        font-size: 1rem;
+    }
+
+    .featured-farms h2, .featured-auctions h2 {
+        font-size: 2rem;
+    }
+
+    .blog-terms h2 {
+        font-size: 2rem;
+    }
+}

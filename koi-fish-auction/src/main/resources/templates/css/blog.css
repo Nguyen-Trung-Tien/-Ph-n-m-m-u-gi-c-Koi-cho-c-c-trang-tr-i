@@ -1,0 +1,52 @@
+body {
+    background-image: url(koi_bg.jpg); /* Thay thế bằng đường dẫn đến hình nền của bạn */
+    background-size: cover;
+    background-position: center;
+    color: #fff; /* Màu chữ mặc định */
+}
+
+.container {
+    margin-top: 50px;
+}
+
+.btn {
+    font-size: 14px;
+    border-radius: 30px; /* Làm tròn các góc của nút */
+    padding: 10px 20px; /* Đặt khoảng cách bên trong cho nút */
+    transition: background-color 0.3s, color 0.3s, transform 0.3s; /* Hiệu ứng chuyển tiếp */
+}
+
+.btn:hover {
+    transform: translateY(-2px); /* Hiệu ứng nổi khi hover */
+    color: #fff; /* Giữ màu chữ trắng khi hover */
+}
+
+.btn-outline-light {
+    border: 2px solid #fff; /* Đường viền màu trắng */
+}
+
+.btn-outline-light:hover {
+    background-color: #fff; /* Nền màu trắng khi hover */
+    color: #000; /* Chữ màu đen khi hover */
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.2); /* Nền trong suốt cho thẻ */
+    border-radius: 15px; /* Làm tròn các góc của thẻ */
+    transition: transform 0.3s; /* Hiệu ứng chuyển tiếp cho thẻ */
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Hiệu ứng nổi cho thẻ khi hover */
+}
+
+.card-img-top {
+    border-radius: 15px 15px 0 0; /* Làm tròn các góc trên của hình ảnh */
+}
+
+footer {
+    background: rgba(0, 0, 0, 0.7); /* Nền tối cho footer */
+    color: #fff; /* Màu chữ trắng */
+    padding: 10px 0;
+    position: relative; /* Giúp định vị footer */
+}
