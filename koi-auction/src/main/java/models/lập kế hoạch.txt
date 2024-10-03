@@ -1,0 +1,31 @@
+1.Công Nghệ Sử Dụng:
+Frontend: HTML, CSS, JavaScript (cho tính tương tác)
+Backend: Java (Spring Boot), MySQL (Cơ sở dữ liệu)
+Công Cụ Bổ Sung: Hệ thống thông báo/email, Cổng thanh toán, Thuật toán đấu giá
+
+2.Các Tính Năng Chính:
+		2.1 Trang Chủ: Giới thiệu về công ty đấu giá, các trang trại cá, chính sách quy định, blog và thông tin chung.
+			- Quản Lý Người Dùng: Đăng ký, đăng nhập, quản lý hồ sơ người dùng.
+			- Đăng ký người mua và quản lý hồ sơ.
+			- Lịch sử tham gia đấu giá.
+			- Hồ sơ thanh toán và giao dịch.
+			- Trang hiển thị thông tin cá koi (kích thước ,màu sắc, sức khoẻ, giá tiền, thuộc trang trại )
+		2.2 Quản Lý Trang Trại: Đăng ký cho các trang trại Koi.
+			Nộp yêu cầu đấu giá, bao gồm thông tin về cá Koi.
+			Quy trình kiểm tra với việc thỏa thuận giá cả và lựa chọn phương thức đấu giá.
+				Phương Thức Đấu Giá:
+				- Phương Thức 1: Bán cá với giá xác định (nếu có nhiều người mua, sẽ bốc thăm ngẫu nhiên).
+				- Phương Thức 2: Bỏ giá 1 lần với mức giá bí mật.
+				- Phương Thức 3: Trả giá lên với thông tin công khai.
+				- Phương Thức 4: Trả giá xuống với thông tin công khai.
+		2.3 Quản Lý Quy Trình Đấu Giá:
+			+ Bidding thủ công hoặc tự động (giá kích hoạt, giá tối đa, số tiền gia tăng).
+			+ Trạng thái đấu giá thời gian thực và thông báo.
+			+ Thanh Toán & Vận Chuyển:
+				- Tích hợp cổng thanh toán.
+				- Thông báo kết quả đấu giá cho người mua.
+			+ Quản lý vận chuyển cá từ trang trại đến người mua.
+3.Dashboard:
+		+ Thống kê cho đấu giá, doanh số, sự tham gia của người mua, doanh thu,...
+		+ Module Blog:
+			- Nội dung do quản trị viên quản lý cho tin tức, bài viết blog và cập nhật.
