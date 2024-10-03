@@ -1,0 +1,33 @@
+body {
+    background-image: url(koi_bg.jpg); /* Thay thế bằng đường dẫn đến hình nền của bạn */
+    background-size: cover;
+    background-position: center;
+    color: #333; /* Màu chữ mặc định */
+}
+
+.container {
+    margin-top: 50px;
+}
+
+.table {
+    background-color: rgba(255, 255, 255, 0.9); /* Nền trắng với độ trong suốt */
+    color: #333; /* Màu chữ cho bảng */
+}
+
+.btn {
+    border-radius: 30px; /* Làm tròn các góc của nút */
+    padding: 10px 20px; /* Đặt khoảng cách bên trong cho nút */
+    transition: background-color 0.3s, color 0.3s, transform 0.3s; /* Hiệu ứng chuyển tiếp */
+}
+
+.btn:hover {
+    transform: translateY(-2px); /* Hiệu ứng nổi khi hover */
+    color: #fff; /* Giữ màu chữ trắng khi hover */
+}
+
+footer {
+    background: rgba(0, 0, 0, 0.7); /* Nền tối cho footer */
+    color: #fff; /* Màu chữ trắng */
+    padding: 10px 0;
+    position: relative; /* Giúp định vị footer */
+}
