@@ -1,0 +1,228 @@
+body {
+    background: url(../images/login.jpg);
+    background-size: cover;
+    background-position-y: -60px;
+    font-size: 20px;
+}
+
+#wrapper {
+
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#form-login {
+    max-width: 400px;
+    background: ghba(0, 0, 0, 0.8);
+    flex-grow: 1;
+    padding: 30px 30px 40px;
+    box-shadow: 0px 0px 17px rgba(241, 240, 240, 0.8);
+}
+
+.form-heading {
+
+    font-size: 50px;
+    color: #f5f5f5ff;
+    text-align: center;
+    margin-bottom: 30px;
+    margin-bottom: 20px;
+
+}
+
+.form-group {
+    border-bottom: 1px solid #fff;
+    margin-top: 15px;
+    display: flex;
+
+
+}
+
+.form-group i {
+    color: #fff;
+    font-size: 14px;
+}
+
+.form-input {
+    background: transparent;
+    font-weight: bold;
+    text-align: left;
+    border: 0;
+    outline: 0;
+    color: #f7f0f0;
+    flex-grow: 1;
+    font-size: 20px;
+}
+
+.form-input::placeholder {
+    padding-right: 0;
+
+}
+
+#ege {
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.form-submit {
+    background-color: #4CAF50;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
+    border: none;
+    color: #f5f5f5ff;
+    width: 100%;
+    text-transform: uppercase;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.25s ease-in-out;
+    margin-top: 30px;
+
+}
+
+.form-submit i {
+    margin-right: 8px;
+    font-size: 18px;
+}
+
+.form-submit:hover {
+    background-color: #45a049;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
+;
+}
+
+.social-login {
+    text-align: center;
+    margin-top: 30px;
+    color: blue;
+}
+
+.social-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    width: 100%;
+    max-width: 200px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin: 10px 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.social-button i {
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+.facebook {
+    background-color: #3b5998;
+}
+
+.facebook:hover {
+    background-color: #2d4373;
+}
+
+.google {
+    background-color: #db4437;
+}
+
+.google:hover {
+    background-color: #c23321;
+}
+
+.top-buttons {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.top-buttons a {
+    text-decoration: none;
+    font-size: 16px;
+    color: #333;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.top-buttons a:hover {
+    background-color: #ddd;
+}
+
+.home-button i,
+.register-button i {
+    font-size: 18px;
+}
+
+.top-buttons {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    gap: 15px;
+}
+
+.top-buttons a {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+
+    padding: 10px 20px;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    transition: all 0.3s ease;
+
+}
+
+.top-buttons a:hover {
+    transform: translateY(-3px);
+    background: linear-gradient(135deg, #bc1888, #cc2366, #dc2743, #e6683c, #f09433);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+
+}
+
+.home-button i,
+.register-button i {
+    font-size: 18px;
+    transition: transform 0.3s ease;
+
+}
+
+.home-button:hover i,
+.register-button:hover i {
+    transform: rotate(360deg);
+    /* Icon rotation on hover */
+
+}
+
+.button-clicked {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+}
+
+@media (max-width: 600px) {
+    .top-buttons a {
+        font-size: 14px;
+        padding: 8px 15px;
+    }
+}

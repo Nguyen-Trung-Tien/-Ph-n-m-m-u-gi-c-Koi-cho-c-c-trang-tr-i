@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "string.datasource.url",
+      "type": "java.lang.String",
+      "description": "Description for string.datasource.url."
+  }
+] }
