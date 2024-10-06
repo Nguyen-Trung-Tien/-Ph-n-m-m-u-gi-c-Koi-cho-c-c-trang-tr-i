@@ -21,8 +21,8 @@ public class Auction {
     private String status;
 
 
-    @ManyToOne // Mối quan hệ nhiều tới một
-    @JoinColumn(name = "user_id") // Tên cột trong bảng auction
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
     @OneToMany(mappedBy = "auction")
@@ -31,7 +31,6 @@ public class Auction {
     public Long getAuctionId() {
         return auctionId;
     }
-
     public void setAuctionId(Long auctionId) {
         this.auctionId = auctionId;
     }

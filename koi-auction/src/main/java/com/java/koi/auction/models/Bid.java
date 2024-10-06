@@ -8,7 +8,7 @@ import jakarta.persistence.*;
 public class Bid {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long bidId;
 
     private double amount;
     private String bidType;
@@ -21,12 +21,12 @@ public class Bid {
     @JoinColumn(name = "user_id")
     private User bidder;
 
-    public Long getId() {
-        return id;
+    public Long getBidId() {
+        return bidId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setBidId(Long bidId) {
+        this.bidId = bidId;
     }
 
     public double getAmount() {

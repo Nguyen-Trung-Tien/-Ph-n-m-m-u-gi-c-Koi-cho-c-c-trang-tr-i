@@ -3,37 +3,23 @@ package com.java.koi.auction.controller;
 import com.java.koi.auction.models.Transaction;
 import com.java.koi.auction.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/transactions")
 public class TransactionController {
+
+    private final TransactionService transactionService;
+
     @Autowired
-    private TransactionService transactionService;
-
-    @GetMapping
-    public List<Transaction> getAllTransactions() {
-        return transactionService.getAllTransactions();
+    public TransactionController(TransactionService transactionService) {
+        this.transactionService = transactionService;
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Transaction> getTransactionById(@PathVariable Long id) {
-        return transactionService.getTransactionById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
-    }
-
-    @PostMapping
-    public Transaction createTransaction(@RequestBody Transaction transaction) {
-        return transactionService.saveTransaction(transaction);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteTransaction(@PathVariable Long id) {
-        transactionService.deleteTransaction(id);
-        return ResponseEntity.noContent().build();
+    @GetMapping("/transactions")
+    public List<Transaction> getTransactions(@RequestParam String status) {
+        return transactionService.getTransactionsByStatus(status);
     }
 }

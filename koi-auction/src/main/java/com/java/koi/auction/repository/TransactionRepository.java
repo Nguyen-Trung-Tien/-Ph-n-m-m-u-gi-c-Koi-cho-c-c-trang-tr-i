@@ -9,7 +9,6 @@ import java.util.List;
 @Repository
 public interface TransactionRepository extends JpaRepository<Transaction, Long> {
 
-    // Tìm kiếm giao dịch theo trạng thái
     List<Transaction> findByStatus(String status);
 
 }

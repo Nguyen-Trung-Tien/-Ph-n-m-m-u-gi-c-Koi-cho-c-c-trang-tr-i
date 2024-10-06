@@ -97,8 +97,7 @@ public class Koi {
                 ", size='" + size + '\'' +
                 ", color='" + color + '\'' +
                 ", startingPrice=" + startingPrice +
-                ", farm=" + (farm != null ? farm.getFarmId() : null) + // Assuming getFarmId() exists
-                '}';
+                ", farm=" + (farm != null ? farm.getFarmId() : null) + '}';
     }
 
     @Override

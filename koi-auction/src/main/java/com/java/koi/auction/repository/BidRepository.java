@@ -8,6 +8,8 @@ import java.math.BigDecimal;
 
 @Repository
 public interface BidRepository extends JpaRepository<Bid, Long> {
-    @Query("SELECT MAX(b.amount) FROM Bid b WHERE b.auction.id = ?1")
+    @Query("SELECT MAX(b.amount) FROM Bid b WHERE b.auction.auctionId = ?1")
     BigDecimal findMaxBidAmountByAuctionId(Long auctionId);
+
+
 }

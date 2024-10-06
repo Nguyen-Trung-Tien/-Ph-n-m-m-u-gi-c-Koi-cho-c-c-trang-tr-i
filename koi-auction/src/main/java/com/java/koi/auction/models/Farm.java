@@ -13,7 +13,7 @@ public class Farm {
     private Long farmId;
 
     @Column(nullable = false)
-    private String name;
+    private String farmName;
 
     private String location;
 
@@ -32,12 +32,11 @@ public class Farm {
         this.farmId = farmId;
     }
 
-    public String getName() {
-        return name;
+    public String getFarmName() {
+        return farmName;
     }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setFarmName(String farmName) {
+        this.farmName = farmName;
     }
 
     public String getLocation() {

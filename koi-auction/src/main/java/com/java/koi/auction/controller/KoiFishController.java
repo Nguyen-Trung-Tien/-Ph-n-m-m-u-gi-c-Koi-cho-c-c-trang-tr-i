@@ -2,7 +2,6 @@ package com.java.koi.auction.controller;
 
 import com.java.koi.auction.models.Koi;
 import com.java.koi.auction.service.KoiFishService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,8 +10,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/koi")
 public class KoiFishController {
-    @Autowired
-    private KoiFishService koiService;
+
+    private final KoiFishService koiService;
+
+    public KoiFishController(KoiFishService koiService) {
+        this.koiService = koiService;
+    }
 
     @GetMapping
     public List<Koi> getAllKoi() {
