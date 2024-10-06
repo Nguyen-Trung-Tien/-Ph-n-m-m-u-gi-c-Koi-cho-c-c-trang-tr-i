@@ -1,0 +1,122 @@
+#content {
+    background-color: #dfe0e2;
+}
+
+#login-container {
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: rgb(213, 213, 217);
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    font-size: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+    border-radius: 4px;
+    padding: 4px; 
+    font-size: 15px;
+}
+
+#login-form input {
+    font-size: 14px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    background-color: rgb(213, 213, 217);
+    border: 1px solid #000;
+    border-radius: 20px;
+    transition: border-color 0.3s ease;
+}
+
+
+input:focus {
+    border-color: red;
+    outline: none;
+}
+
+input::placeholder {
+    color: #aaa; 
+    font-style: italic;
+    font-size: 14px; 
+    opacity: 1;
+    font-family: "Montserrat", sans-serif;
+}
+
+
+.submit-button {
+    width: 100%;
+    padding:15px 20px;
+    background-color: #4a5568;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #2d3748;
+}
+
+.forget-password {
+    display: block;
+    text-align: right;
+    margin-bottom: 10px;
+    text-decoration: none;
+    font-size: 10px;
+}
+
+.forget-password:hover{
+    text-decoration: underline;
+}
+
+.password-container {
+    position: relative;
+    width: 100%;
+}
+
+.password-container input {
+    width: 100%;
+    padding: 10px 40px 10px 10px; 
+    border-radius: 20px; 
+}
+
+.password-container button {
+    position: absolute; 
+    right: 10px; 
+    top: 50%;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0; 
+    width: 30px; 
+    height: 30px; 
+}
+
+.password-container button i {
+    font-size: 20px;
+}
+

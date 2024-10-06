@@ -1,0 +1,156 @@
+*{
+    box-sizing: inherit;
+}
+
+html{
+    font-size: 62.5%;
+    line-height: 1.6rem;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif !important; 
+    background-color: #dfe0e2;
+}
+
+#header {
+    height: 64px;
+    background-color: rgb(213 213 217);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1;
+    padding: 0 20px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.Home_text {
+    font-size: 24px;
+    font-weight: bold;
+    margin-right: 20px; 
+}
+
+.Home_text a {
+    text-decoration: none;
+    color: #333;
+}
+
+.header_nav-text {
+    font-weight: 400;
+}
+
+.header_nav-left {
+    display: flex;
+    align-items: center;
+    margin: 0 50px;
+}
+
+.header_nav-flex {
+    display: flex;
+    align-items: center;
+}
+
+.header_nav-items {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    padding: 15px 20px;
+    border-radius: 30px;
+    transition: background-color 0.5s ease, color 0.5s ease, font-weight 0.5s ease;
+}
+
+.header_nav-items:hover {
+    background-color: #c7cfd8;
+    color: #000;
+    border-radius: 30px;
+    text-decoration: none;
+}
+
+.header_nav-items.active {
+    background-color: rgb(70 133 175); 
+    color: #FFFFFF; 
+    font-weight: bold;
+    border-radius: 30px;
+}
+
+.header_nav-items i,
+.header_nav-items svg {
+    margin-right: 8px;
+}
+
+.header_nav-right {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+.header_nav-right .header_nav-items {
+    margin-left: 20px;
+}
+
+#footer {
+    background-color: rgb(202 203 207);
+    color: #343a40;
+    padding: 40px 0;
+}
+
+.footer-container {
+    display: flex; 
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.footer-section {
+    flex: 1; 
+    margin: 0 20px;
+}
+
+.footer-heading {
+    font-size: 1.5em; 
+    margin-bottom: 15px; 
+    font-weight: bold;
+    color: #007bff; 
+}
+
+.footer-section p,
+.footer-section a {
+    font-size: 1em; 
+    line-height: 1.5;
+    color: #343a40;
+}
+
+.footer-section a {
+    text-decoration: none; 
+}
+
+.footer-section a:hover {
+    color: #0056b3; 
+}
+
+.footer-bottom {
+    border-top: 1px solid #e5e7eb; 
+    padding: 20px; 
+    text-align: center;
+    font-size: 0.9em;
+}
+
+.footer-section ul {
+    list-style-type: none;
+    padding: 0; 
+}
+
+.footer-section ul li {
+    margin-bottom: 10px; 
+}
+
+.footer-section ul li a {
+    color: #007bff;
+}
+
+.footer-section ul li a:hover {
+    color: #0056b3; 
+}
