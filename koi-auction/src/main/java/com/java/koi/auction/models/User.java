@@ -1,35 +1,24 @@
 package com.java.koi.auction.models;
 
 import jakarta.persistence.*;
+
+import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "users")
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+    private Long id;
 
-    @Column(nullable = false, unique = true)
     private String username;
-
-    @Column(nullable = false)
     private String password;
-
+    private String email;
     private String role;
-    private String contactInfo;
 
-    @OneToMany(mappedBy = "user")
-    private Set<Farm> farms;
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
+    @OneToMany(mappedBy = "user") // Kiểm tra mappedBy
+    private List<Auction> auctions;
 
     public String getUsername() {
         return username;
@@ -37,6 +26,14 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getPassword() {
@@ -47,6 +44,14 @@ public class User {
         this.password = password;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getRole() {
         return role;
     }
@@ -55,19 +60,11 @@ public class User {
         this.role = role;
     }
 
-    public String getContactInfo() {
-        return contactInfo;
+    public List<Auction> getAuctions() {
+        return auctions;
     }
 
-    public void setContactInfo(String contactInfo) {
-        this.contactInfo = contactInfo;
-    }
-
-    public Set<Farm> getFarms() {
-        return farms;
-    }
-
-    public void setFarms(Set<Farm> farms) {
-        this.farms = farms;
+    public void setAuctions(List<Auction> auctions) {
+        this.auctions = auctions;
     }
 }

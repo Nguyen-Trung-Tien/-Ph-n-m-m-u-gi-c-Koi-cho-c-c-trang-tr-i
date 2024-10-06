@@ -1,40 +1,40 @@
 package com.java.koi.auction.models;
 
-
 import jakarta.persistence.*;
-import java.math.BigDecimal;
+
 
 @Entity
 @Table(name = "transactions")
 public class Transaction {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long transactionId;
+    private Long id;
+
+    private double amount;
+    private String status;
 
     @ManyToOne
-    @JoinColumn(name = "auction_id", nullable = false)
+    @JoinColumn(name = "auction_id")
     private Auction auction;
 
     @ManyToOne
-    @JoinColumn(name = "buyer_id", nullable = false)
+    @JoinColumn(name = "buyer_id")
     private User buyer;
 
-    @ManyToOne
-    @JoinColumn(name = "seller_id", nullable = false)
-    private User seller;
-
-    @Column(nullable = false)
-    private BigDecimal amount;
-
-    private String status;
-
-    public Long getTransactionId() {
-        return transactionId;
+    public Long getId() {
+        return id;
     }
 
-    public void setTransactionId(Long transactionId) {
-        this.transactionId = transactionId;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
     }
 
     public String getStatus() {
@@ -45,20 +45,12 @@ public class Transaction {
         this.status = status;
     }
 
-    public BigDecimal getAmount() {
-        return amount;
+    public Auction getAuction() {
+        return auction;
     }
 
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
-
-    public User getSeller() {
-        return seller;
-    }
-
-    public void setSeller(User seller) {
-        this.seller = seller;
+    public void setAuction(Auction auction) {
+        this.auction = auction;
     }
 
     public User getBuyer() {
@@ -68,13 +60,4 @@ public class Transaction {
     public void setBuyer(User buyer) {
         this.buyer = buyer;
     }
-
-    public Auction getAuction() {
-        return auction;
-    }
-
-    public void setAuction(Auction auction) {
-        this.auction = auction;
-    }
 }
-

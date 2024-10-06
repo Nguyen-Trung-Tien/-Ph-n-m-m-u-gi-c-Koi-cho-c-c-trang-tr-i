@@ -1,7 +1,8 @@
 package com.java.koi.auction.models;
 
 import jakarta.persistence.*;
-import java.math.BigDecimal;
+
+import java.util.Objects;
 
 @Entity
 @Table(name = "koi")
@@ -11,17 +12,25 @@ public class Koi {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long koiId;
 
+    @Column(name = "name", nullable = false, length = 100)
+    private String name;
+
+    @Column(name = "variety", nullable = false, length = 100)
+    private String variety;
+
+    @Column(name = "size", nullable = false, length = 50)
     private String size;
+
+    @Column(name = "color", nullable = false, length = 50)
     private String color;
-    private String health;
-    private BigDecimal price;
+
+    @Column(name = "starting_price", nullable = false)
+    private double startingPrice;
 
     @ManyToOne
     @JoinColumn(name = "farm_id", nullable = false)
     private Farm farm;
 
-    @OneToOne(mappedBy = "koi")
-    private Auction auction;
 
     public Long getKoiId() {
         return koiId;
@@ -29,6 +38,22 @@ public class Koi {
 
     public void setKoiId(Long koiId) {
         this.koiId = koiId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getVariety() {
+        return variety;
+    }
+
+    public void setVariety(String variety) {
+        this.variety = variety;
     }
 
     public String getSize() {
@@ -47,20 +72,12 @@ public class Koi {
         this.color = color;
     }
 
-    public String getHealth() {
-        return health;
+    public double getStartingPrice() {
+        return startingPrice;
     }
 
-    public void setHealth(String health) {
-        this.health = health;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
+    public void setStartingPrice(double startingPrice) {
+        this.startingPrice = startingPrice;
     }
 
     public Farm getFarm() {
@@ -71,11 +88,35 @@ public class Koi {
         this.farm = farm;
     }
 
-    public Auction getAuction() {
-        return auction;
+    @Override
+    public String toString() {
+        return "Koi{" +
+                "koiId=" + koiId +
+                ", name='" + name + '\'' +
+                ", variety='" + variety + '\'' +
+                ", size='" + size + '\'' +
+                ", color='" + color + '\'' +
+                ", startingPrice=" + startingPrice +
+                ", farm=" + (farm != null ? farm.getFarmId() : null) + // Assuming getFarmId() exists
+                '}';
     }
 
-    public void setAuction(Auction auction) {
-        this.auction = auction;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Koi)) return false;
+        Koi koi = (Koi) o;
+        return Double.compare(koi.startingPrice, startingPrice) == 0 &&
+                koiId.equals(koi.koiId) &&
+                name.equals(koi.name) &&
+                variety.equals(koi.variety) &&
+                size.equals(koi.size) &&
+                color.equals(koi.color) &&
+                farm.equals(koi.farm);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(koiId, name, variety, size, color, startingPrice, farm);
     }
 }

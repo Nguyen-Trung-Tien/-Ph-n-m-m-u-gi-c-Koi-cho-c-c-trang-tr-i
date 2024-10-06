@@ -6,27 +6,27 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "bids")
 public class Bid {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long bidId;
+    private Long id;
 
     private double amount;
+    private String bidType;
 
     @ManyToOne
-    @JoinColumn(name = "auction_id", nullable = false)
+    @JoinColumn(name = "auction_id")
     private Auction auction;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @JoinColumn(name = "user_id")
+    private User bidder;
 
-    public Long getBidId() {
-        return bidId;
+    public Long getId() {
+        return id;
     }
 
-    public void setBidId(Long bidId) {
-        this.bidId = bidId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public double getAmount() {
@@ -37,6 +37,14 @@ public class Bid {
         this.amount = amount;
     }
 
+    public String getBidType() {
+        return bidType;
+    }
+
+    public void setBidType(String bidType) {
+        this.bidType = bidType;
+    }
+
     public Auction getAuction() {
         return auction;
     }
@@ -45,11 +53,11 @@ public class Bid {
         this.auction = auction;
     }
 
-    public User getUser() {
-        return user;
+    public User getBidder() {
+        return bidder;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setBidder(User bidder) {
+        this.bidder = bidder;
     }
 }

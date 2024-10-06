@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thêm/Sửa người dùng</title>
+</head>
+<body>
+<h1 th:text="${user.id != null} ? 'Sửa người dùng' : 'Thêm người dùng'"></h1>
+<form th:action="@{/admin/users/save}" th:object="${user}" method="post">
+    <input type="hidden" th:field="*{id}" />
+    <label for="username">Tên người dùng:</label>
+    <input type="text" id="username" th:field="*{username}" required />
+    <label for="email">Email:</label>
+    <input type="email" id="email" th:field="*{email}" required />
+    <button type="submit">Lưu</button>
+</form>
+</body>
+</html>

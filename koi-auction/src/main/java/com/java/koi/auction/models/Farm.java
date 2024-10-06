@@ -1,5 +1,7 @@
 package com.java.koi.auction.models;
 import jakarta.persistence.*;
+
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -20,7 +22,7 @@ public class Farm {
     private User user;
 
     @OneToMany(mappedBy = "farm")
-    private Set<Koi> kois;
+    private List<Koi> kois;
 
     public Long getFarmId() {
         return farmId;
@@ -54,11 +56,11 @@ public class Farm {
         this.user = user;
     }
 
-    public Set<Koi> getKois() {
+    public List<Koi> getKois() {
         return kois;
     }
 
-    public void setKois(Set<Koi> kois) {
+    public void setKois(List<Koi> kois) {
         this.kois = kois;
     }
 }
