@@ -1,0 +1,145 @@
+/* home.css */
+
+.cover-page {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(224 224 226);
+    padding: 32px 16px
+}
+
+.banner-container {
+    position: relative;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 80px;
+}
+
+.banner-img {
+    max-width: 800px;
+    height: 440px;
+    border-radius: 20px;
+}
+
+.banner-text-container {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translate(-50%,40%);
+    padding: 5px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.banner-text {
+    color: #fff;
+    font-size: 70px;
+    font-family: 'Righteous', cursive;
+    padding: 5px 40px;
+}
+
+.banner-slogan {
+    padding: 0 200px;
+    text-align: center;
+    font-size: 50px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 10px;
+    font-family: "Quicksand", sans-serif;
+}
+
+.banner-slogan span {
+    color: rgb(212 22 60);
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.btn-Auction.btn {
+    background-color: rgb(212 22 60);
+    border-radius: 40px;
+    font-size: 25px;
+    text-align: center;
+    padding: 8px 40px;
+    color: #fff;
+    font-weight: 600;
+    margin: 10px;
+}
+
+
+.btn-Auction.btn:hover {
+    background-color:rgb(244 25 69);
+    border-radius: 40px;
+    font-size: 25px;
+    text-align: center;
+    padding: 8px 40px;
+    color: #fff;
+    font-weight: 600;
+}
+
+.btn-Learn.btn{
+    background-color: rgb(220 183 193);
+    border-radius: 40px;
+    font-size: 25px;
+    text-align: center;
+    padding: 8px 40px;
+    font-weight: 600;
+    border: red solid 1px;
+    margin: 10px;
+}
+
+.btn-Learn.btn:hover{
+    background-color: rgb(220 183 193);
+    border-radius: 40px;
+    font-size: 25px;
+    text-align: center;
+    padding: 8px 40px;
+    font-weight: 600;
+    border: red solid 1px;
+}
+
+.trademark-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 50px;
+}
+
+.trademark {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    width: 150px;
+    height: 200px;
+    box-sizing: border-box;
+}
+
+.trademark:hover {
+    transform: scale(1.05);
+}
+
+.trademark-img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+.trademark-name {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+    margin-top: auto;
+}
+

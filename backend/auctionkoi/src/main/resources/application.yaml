@@ -1,0 +1,13 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /auction
+spring:
+  datasource:
+    url: "jdbc:mysql://localhost:3306/auction_koi"
+    username: root
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
