@@ -13,7 +13,9 @@ const Header = () => {
                         <i className="fa-solid fa-house"></i>
                         <span className="header_nav-text">Home</span>
                     </Link>
-                    <Link to="/auction" className={`header_nav-items ${location.pathname === '/auction' ? 'active' : ''}`}>
+                    <Link to="/auction"
+                          className={`header_nav-items ${location.pathname.startsWith('/auction') ? 'active' : ''}`}>
+                        <i className="fa-solid fa-gavel"></i>
                         <span className="header_nav-text">Auctions</span>
                     </Link>
                     <Link to="/help" className={`header_nav-items ${location.pathname === '/help' ? 'active' : ''}`}>
@@ -23,11 +25,12 @@ const Header = () => {
                 </div>
             </div>
             <div className="header_nav-right">
-                <Link to="/login" className={`header_nav-items ${location.pathname === '/login' ? 'active' : ''}`}>Login</Link>
+                <Link to="/login"
+                      className={`header_nav-items ${location.pathname === '/login' ? 'active' : ''}`}>Login</Link>
                 <Link to="/register" className={`header_nav-items ${location.pathname === '/register' ? 'active' : ''}`}>Register</Link>
             </div>
         </div>
     );
 };
 
-export default Header; // Đảm bảo xuất khẩu mặc định
+export default Header;

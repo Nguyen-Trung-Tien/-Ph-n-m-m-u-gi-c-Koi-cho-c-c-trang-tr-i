@@ -2,15 +2,21 @@
     box-sizing: inherit;
 }
 
-html{
+:root{
+    --theme-font-family-base:"Montserrat", sans-serif;
+    --theme-font-family-heading:"Quicksand", sans-serif;
+}
+
+#main{
     font-size: 62.5%;
     line-height: 1.6rem;
     box-sizing: border-box;
-    font-family: "Montserrat", sans-serif !important; 
+    font-family: var(--theme-font-family-base) !important;
     background-color: #dfe0e2;
 }
 
 #header {
+    font-family: var(--theme-font-family-heading) !important;
     height: 64px;
     background-color: rgb(213 213 217);
     display: flex;
@@ -71,10 +77,15 @@ html{
 }
 
 .header_nav-items.active {
-    background-color: rgb(70 133 175); 
-    color: #FFFFFF; 
+    background-color: rgb(70 133 175);
+    color: #FFFFFF ;
     font-weight: bold;
     border-radius: 30px;
+}
+
+.header_nav-items.active span{
+    font-weight: bold;
+    color: #FFFFFF !important;
 }
 
 .header_nav-items i,
