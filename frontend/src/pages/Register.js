@@ -56,7 +56,7 @@ const Register = () => {
             <div id="content">
                 {/* Begin Register Form */}
                 <div id="register-container">
-                    <h2>Đăng Ký</h2>
+                    <h2>Register</h2>
                     {error && <p style={{ color: 'red' }}>{error}</p>}
                     <form id="register-form" onSubmit={handleRegister}>
                         <div className="form-group names-group">

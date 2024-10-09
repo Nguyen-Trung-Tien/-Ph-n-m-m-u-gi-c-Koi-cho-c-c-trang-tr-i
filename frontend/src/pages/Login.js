@@ -1,5 +1,5 @@
-// src/components/Login.js
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../css/login.css';
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -7,6 +7,8 @@ import Footer from "../components/Footer";
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+    const navigate = useNavigate();
 
     const handleLogin = (event) => {
         event.preventDefault();
@@ -22,10 +24,12 @@ const Login = () => {
         .then(data => {
             if (data.message === "successful") {
                 console.log('Đăng nhập thành công:', data.user);
-                // Chuyển hướng hoặc thực hiện hành động khác sau khi đăng nhập thành công
+                localStorage.setItem('isAuthenticated', 'true');
+                localStorage.setItem('user', JSON.stringify(data.user));
+                navigate('/'); 
             } else {
                 console.error('Đăng nhập thất bại:', data.message);
-                alert(data.message);
+                setErrorMessage('Tài khoản hoặc mật khẩu không đúng');
             }
         })
         .catch(error => {
@@ -33,8 +37,6 @@ const Login = () => {
             alert('Đã xảy ra lỗi, vui lòng thử lại sau!');
         });
     };
-    
-    
 
     return (
         <div id="main">
@@ -69,6 +71,7 @@ const Login = () => {
                             />
                         </div>
                         <button type="submit" className="submit-button">Login</button>
+                        {errorMessage && <div className="error-message">{errorMessage}</div>}
                     </form>
                 </div>
                 {/* End Login Form */}

@@ -30,14 +30,18 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity<?> loginUser(@RequestBody UserLoginRequest request) {
-        String loginResponse = userService.loginUser(request);
+        User user = userService.loginUser(request);
 
-        if ("User not found".equals(loginResponse) || "Invalid password".equals(loginResponse)) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"message\": \"" + loginResponse + "\"}");
-        }
-
-        return ResponseEntity.ok("{\"message\": \"successful\", \"user\": \"" + loginResponse + "\"}");
+        return ResponseEntity.ok(Map.of(
+                "message", "successful",
+                "user", Map.of(
+                        "username", user.getUsername(),
+                        "firstName", user.getFirstName(),
+                        "lastName", user.getLastName()
+                )
+        ));
     }
+
 
     @GetMapping
     public List<User> getUsers() {
