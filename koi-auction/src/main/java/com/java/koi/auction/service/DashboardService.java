@@ -4,22 +4,23 @@ import com.java.koi.auction.models.DashboardData;
 import com.java.koi.auction.repository.AuctionRepository;
 import com.java.koi.auction.repository.TransactionRepository;
 import com.java.koi.auction.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class DashboardService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+    private final AuctionRepository auctionRepository;
+    private final TransactionRepository transactionRepository;
 
-    @Autowired
-    private AuctionRepository auctionRepository;
+    public DashboardService(UserRepository userRepository,
+                            AuctionRepository auctionRepository,
+                            TransactionRepository transactionRepository) {
+        this.userRepository = userRepository;
+        this.auctionRepository = auctionRepository;
+        this.transactionRepository = transactionRepository;
+    }
 
-    @Autowired
-    private TransactionRepository transactionRepository;
-
-    // Lấy dữ liệu thống kê cho dashboard
     public DashboardData getDashboardData() {
         DashboardData data = new DashboardData();
         data.setTotalUsers(userRepository.count());
@@ -27,5 +28,5 @@ public class DashboardService {
         data.setTotalTransactions(transactionRepository.count());
         return data;
     }
-}
 
+}

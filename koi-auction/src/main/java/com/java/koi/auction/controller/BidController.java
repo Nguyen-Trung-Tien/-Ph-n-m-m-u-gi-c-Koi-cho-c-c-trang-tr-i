@@ -2,7 +2,6 @@ package com.java.koi.auction.controller;
 
 import com.java.koi.auction.models.Bid;
 import com.java.koi.auction.service.BidService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,8 +10,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/bids")
 public class BidController {
-    @Autowired
-    private BidService bidService;
+    private final BidService bidService;
+
+    public BidController(BidService bidService) {
+        this.bidService = bidService;
+    }
 
     @GetMapping
     public List<Bid> getAllBids() {

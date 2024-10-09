@@ -13,10 +13,16 @@ public class KoiFishController {
 
     private final KoiFishService koiService;
 
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("/koi-fish")
+    public List<Koi> getAllKoiFish() {
+        return koiService.getAllKoi();
+    }
+
+
     public KoiFishController(KoiFishService koiService) {
         this.koiService = koiService;
     }
-
     @GetMapping
     public List<Koi> getAllKoi() {
         return koiService.getAllKoi();
@@ -39,4 +45,5 @@ public class KoiFishController {
         koiService.deleteKoi(id);
         return ResponseEntity.noContent().build();
     }
+
 }

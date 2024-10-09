@@ -10,16 +10,14 @@ import java.util.List;
 
 @RestController
 public class TransactionController {
-
     private final TransactionService transactionService;
-
     @Autowired
     public TransactionController(TransactionService transactionService) {
         this.transactionService = transactionService;
     }
-
     @GetMapping("/transactions")
     public List<Transaction> getTransactions(@RequestParam String status) {
         return transactionService.getTransactionsByStatus(status);
     }
+
 }
