@@ -5,7 +5,7 @@
     justify-content: center;
     align-items: center;
     background-color: rgb(224 224 226);
-    padding: 32px 16px
+    padding: 32px 50px;
 }
 
 .banner-container {
@@ -13,12 +13,16 @@
     text-align: center;
     width: 100%;
     margin-bottom: 80px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
 }
 
 .banner-img {
     max-width: 800px;
-    height: 440px;
     border-radius: 20px;
+    width: 100%;
+    height: auto;
 }
 
 .banner-text-container {
@@ -35,9 +39,38 @@
 
 .banner-text {
     color: #fff;
-    font-size: 70px;
+    font-size: 2.25rem;
+    line-height: 2.5rem;
     font-family: 'Righteous', cursive;
     padding: 5px 40px;
+}
+
+@media (min-width: 640px) {
+    .banner-text {
+        font-size: 3.75rem; /* kích thước cho sm */
+        line-height: 1;
+    }
+}
+
+@media (min-width: 768px) {
+    .banner-text {
+        font-size: 4rem; /* kích thước cho md */
+        line-height: 1.1;
+    }
+}
+
+@media (min-width: 1024px) {
+    .banner-text {
+        font-size: 4.5rem; /* kích thước cho lg */
+        line-height: 1.2;
+    }
+}
+
+@media (min-width: 1280px) {
+    .banner-text {
+        font-size: 5rem; /* kích thước cho xl */
+        line-height: 1.3;
+    }
 }
 
 .banner-slogan {

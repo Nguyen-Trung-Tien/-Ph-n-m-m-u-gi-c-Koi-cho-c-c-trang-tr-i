@@ -23,7 +23,14 @@ const Header = () => {
 
     return (
         <div id="header">
-            <h1 className="Home_text"><Link to="/">AUCTIONKOI</Link></h1>
+            <h1 className="Home_text">
+                <div className="logo_koi">
+                    <img src="../logo/logoKoi.png" className="koi_image"/>
+                </div>
+                <div className="logo_title">
+                    <Link to="/">AUCTIONKOI</Link>
+                </div>
+            </h1>
             <div className="header_nav-left">
                 <div className="header_nav-flex">
                     <Link to="/" className={`header_nav-items ${location.pathname === '/' ? 'active' : ''}`}>
