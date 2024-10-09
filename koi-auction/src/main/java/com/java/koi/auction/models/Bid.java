@@ -1,14 +1,8 @@
 package com.java.koi.auction.models;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
-@Entity
-@Data
 @Table(name = "Bid")
+@Entity
 public class Bid {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,5 +18,43 @@ public class Bid {
     @JoinColumn(name = "user_id")
     private User bidder;
 
+    public Long getBidId() {
+        return bidId;
+    }
 
+    public void setBidId(Long bidId) {
+        this.bidId = bidId;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public String getBidType() {
+        return bidType;
+    }
+
+    public void setBidType(String bidType) {
+        this.bidType = bidType;
+    }
+
+    public Auction getAuction() {
+        return auction;
+    }
+
+    public void setAuction(Auction auction) {
+        this.auction = auction;
+    }
+
+    public User getBidder() {
+        return bidder;
+    }
+
+    public void setBidder(User bidder) {
+        this.bidder = bidder;
+    }
 }

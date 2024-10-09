@@ -1,13 +1,6 @@
 package com.java.koi.auction.models;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
-import java.util.List;
-@Getter
-@Setter
-@Data
 @Entity
 @Table(name = "Auction")
 public class Auction {
@@ -25,11 +18,63 @@ public class Auction {
     @JoinColumn(name = "koi_id", nullable = false)
     private Koi koi;
 
-    @OneToMany(mappedBy = "auction")
-    private List<Bid> bids;
-
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    public Long getAuctionId() {
+        return auctionId;
+    }
+
+    public void setAuctionId(Long auctionId) {
+        this.auctionId = auctionId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public double getStartingPrice() {
+        return startingPrice;
+    }
+
+    public void setStartingPrice(double startingPrice) {
+        this.startingPrice = startingPrice;
+    }
+
+    public String getAuctionType() {
+        return auctionType;
+    }
+
+    public void setAuctionType(String auctionType) {
+        this.auctionType = auctionType;
+    }
+
+    public Koi getKoi() {
+        return koi;
+    }
+
+    public void setKoi(Koi koi) {
+        this.koi = koi;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }
