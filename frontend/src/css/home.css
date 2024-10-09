@@ -74,18 +74,28 @@
 }
 
 .banner-slogan {
-    padding: 0 200px;
+    max-width: 800px;
+    justify-content: center;
     text-align: center;
-    font-size: 50px;
+    font-size: 4vw;
     font-weight: bold;
     color: #333;
     margin-top: 10px;
     font-family: "Quicksand", sans-serif;
 }
 
+
+
+.flexgrow{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
 .banner-slogan span {
     color: rgb(212 22 60);
-    font-size: 50px;
+    font-size: 4vw;
+
 }
 
 .button-container {
@@ -96,7 +106,7 @@
 .btn-Auction.btn {
     background-color: rgb(212 22 60);
     border-radius: 40px;
-    font-size: 25px;
+    font-size: 2vw;
     text-align: center;
     padding: 8px 40px;
     color: #fff;
@@ -108,7 +118,7 @@
 .btn-Auction.btn:hover {
     background-color:rgb(244 25 69);
     border-radius: 40px;
-    font-size: 25px;
+    /* font-size: 25px; */
     text-align: center;
     padding: 8px 40px;
     color: #fff;
@@ -118,7 +128,7 @@
 .btn-Learn.btn{
     background-color: rgb(220 183 193);
     border-radius: 40px;
-    font-size: 25px;
+    font-size: 2vw;
     text-align: center;
     padding: 8px 40px;
     font-weight: 600;
@@ -129,7 +139,7 @@
 .btn-Learn.btn:hover{
     background-color: rgb(220 183 193);
     border-radius: 40px;
-    font-size: 25px;
+    /* font-size: 25px; */
     text-align: center;
     padding: 8px 40px;
     font-weight: 600;
