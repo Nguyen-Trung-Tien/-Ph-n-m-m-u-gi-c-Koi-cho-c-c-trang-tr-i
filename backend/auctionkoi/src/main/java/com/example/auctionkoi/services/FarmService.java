@@ -1,35 +1,38 @@
 package com.example.auctionkoi.services;
 
+import com.example.auctionkoi.entities.Farm;
 import com.example.auctionkoi.repositories.FarmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class FarmService {
 
     @Autowired
     private FarmRepository farmRepository;
-        public String create() {
-            return "create";
-        }
 
-        public String update() {
-            return "update";
-        }
+    public Farm createFarm(Farm farm) {
+        // Kiểm tra và xử lý nếu cần thiết trước khi lưu vào DB
+        return farmRepository.save(farm);
+    }
 
-        public String delete() {
-            return "delete";
-        }
+    public List<Farm> getAllFarms() {
+        return farmRepository.findAll();
+    }
 
-        public String get() {
-            return "get";
-        }
+    public Farm getFarm(Long farmId) {
+        return farmRepository.findById(farmId).orElse(null);
+    }
 
-        public String getAll() {
-            return "getAll";
-        }
+    public void deleteFarm(Long farmId) {
+        Farm farm = getFarm(farmId);
+        farmRepository.delete(farm);
+    }
 
-        public String search() {
-            return "search";
-        }
+    public Farm updateFarm(Farm farm) {
+        return farmRepository.save(farm);
+    }
+
 }

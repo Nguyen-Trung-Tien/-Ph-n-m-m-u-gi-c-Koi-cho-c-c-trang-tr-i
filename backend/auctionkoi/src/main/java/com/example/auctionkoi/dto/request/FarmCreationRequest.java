@@ -5,9 +5,7 @@ public class FarmCreationRequest {
 
     private String name;
     private String description;
-
-
-
+    private String address;
     public String getName() {
         return name;
     }
@@ -24,4 +22,11 @@ public class FarmCreationRequest {
         this.description = description;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 }
