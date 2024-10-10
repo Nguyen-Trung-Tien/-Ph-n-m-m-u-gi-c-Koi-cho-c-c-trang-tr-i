@@ -6,6 +6,7 @@ public class FarmCreationRequest {
     private String name;
     private String description;
     private String address;
+
     public String getName() {
         return name;
     }
