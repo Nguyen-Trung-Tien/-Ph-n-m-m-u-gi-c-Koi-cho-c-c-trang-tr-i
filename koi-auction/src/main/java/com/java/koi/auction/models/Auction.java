@@ -30,7 +30,7 @@ public class Auction {
         this.auctionId = auctionId;
     }
 
-    public String getTitle() {
+    public String getTitle()     {
         return title;
     }
 
