@@ -1,0 +1,60 @@
+/* Định dạng cho toàn bộ trang admin */
+body {
+  background-color: #f8f9fa; /* Màu nền sáng */
+  font-family: "Arial", sans-serif;
+  margin: 0;
+}
+
+/* Định dạng cho header */
+.navbar {
+  background-color: #007bff; /* Màu xanh dương */
+}
+
+.navbar-brand,
+.nav-link {
+  color: #fff !important; /* Màu chữ trắng cho liên kết */
+}
+
+.nav-link:hover {
+  text-decoration: underline; /* Gạch chân khi hover */
+}
+
+/* Định dạng cho nội dung chính */
+.container {
+  padding: 20px;
+  border-radius: 8px; /* Bo tròn các góc */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Đổ bóng */
+  background-color: #fff; /* Nền trắng cho nội dung */
+}
+
+/* Định dạng cho tiêu đề */
+h2 {
+  color: #343a40; /* Màu xám đen cho tiêu đề */
+}
+
+/* Định dạng cho bảng */
+.table {
+  margin-top: 20px; /* Khoảng cách phía trên */
+}
+
+.table th {
+  background-color: #007bff; /* Màu nền cho tiêu đề bảng */
+  color: #fff; /* Màu chữ trắng */
+}
+
+/* Định dạng cho footer */
+footer {
+  background-color: #343a40; /* Màu xám đen */
+  color: #fff; /* Màu chữ trắng */
+  padding: 10px 0; /* Khoảng cách trên dưới */
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar {
+    text-align: center; /* Căn giữa thanh điều hướng trên thiết bị nhỏ */
+  }
+}
