@@ -1,0 +1,30 @@
+.sidebar {
+  width: 200px; /* Độ rộng của sidebar */
+  background-color: #f8f9fa; /* Màu nền */
+  padding: 15px; /* Khoảng cách bên trong */
+  border-right: 1px solid #dee2e6; /* Đường viền bên phải */
+}
+
+.sidebar h2 {
+  font-size: 1.5rem; /* Kích thước tiêu đề */
+  margin-bottom: 1rem; /* Khoảng cách dưới tiêu đề */
+}
+
+.sidebar ul {
+  list-style-type: none; /* Xóa dấu đầu dòng */
+  padding: 0; /* Xóa khoảng cách */
+}
+
+.sidebar li {
+  margin: 10px 0; /* Khoảng cách giữa các mục */
+}
+
+.sidebar a {
+  text-decoration: none; /* Xóa gạch chân */
+  color: #007bff; /* Màu chữ */
+  font-weight: bold; /* Chữ in đậm */
+}
+
+.sidebar a:hover {
+  color: #0056b3; /* Màu chữ khi di chuột */
+}

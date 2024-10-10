@@ -1,0 +1,56 @@
+.auction-management {
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+.create-auction,
+.auction-list {
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.create-auction h3,
+.auction-list h3 {
+  margin-bottom: 10px;
+}
+
+.create-auction label {
+  display: block;
+  margin: 10px 0 5px;
+}
+
+.create-auction input {
+  width: calc(100% - 20px);
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.auction-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.auction-list th,
+.auction-list td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+.auction-list th {
+  background-color: #f2f2f2;
+}
+
+.edit-auction-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}

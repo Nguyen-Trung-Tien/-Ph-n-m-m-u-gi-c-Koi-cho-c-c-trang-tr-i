@@ -1,0 +1,45 @@
+.payment-management {
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+.create-payment,
+.payment-list {
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.create-payment h3,
+.payment-list h3 {
+  margin-bottom: 10px;
+}
+
+.create-payment label {
+  display: block;
+  margin: 10px 0 5px;
+}
+
+.create-payment input {
+  width: calc(100% - 20px);
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.payment-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.payment-list th,
+.payment-list td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+.payment-list th {
+  background-color: #f2f2f2;
+}

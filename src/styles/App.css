@@ -1,0 +1,20 @@
+/* src/styles/App.css */
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f4f7fa;
+  margin: 0;
+  padding: 0;
+}
+
+.app {
+  display: flex;
+  height: 100vh;
+}
+
+.content {
+  margin-left: 250px; /* Căn lề trái cho content */
+  padding: 20px;
+  flex-grow: 1;
+  background-color: #ffffff; /* Màu nền cho nội dung */
+  border-left: 1px solid #e0e0e0;
+}
