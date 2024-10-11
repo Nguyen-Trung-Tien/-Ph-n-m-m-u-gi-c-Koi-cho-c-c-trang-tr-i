@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./AuctionManagement.css";
+import "../styles/AuctionManagement.css";
 
 const AuctionManagement = () => {
   const [auctions, setAuctions] = useState([]);

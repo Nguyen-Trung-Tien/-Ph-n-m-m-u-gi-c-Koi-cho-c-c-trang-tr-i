@@ -1,0 +1,132 @@
+/* src/styles/Header.css */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #333;
+  z-index: 1000;
+  padding: 15px;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__left,
+.header__right {
+  display: flex;
+  align-items: center;
+}
+
+.header__right img {
+  width: 30px;
+  border-radius: 50%;
+}
+
+.header__title h1 {
+  margin: 0; /* Xóa khoảng cách mặc định */
+}
+
+.header__search {
+  display: flex;
+}
+
+.search-input {
+  padding: 10px;
+  border: none;
+  border-radius: 5px 0 0 5px; /* Bo góc cho ô tìm kiếm */
+  outline: none; /* Xóa viền mặc định */
+}
+
+.search-button {
+  padding: 10px 15px;
+  background-color: #3ea175; /* Màu nền cho nút tìm kiếm */
+  color: white; /* Màu chữ nút tìm kiếm */
+  border: none;
+  border-radius: 0 5px 5px 0; /* Bo góc cho nút */
+  cursor: pointer; /* Hiển thị con trỏ khi hover */
+  transition: background-color 0.3s; /* Hiệu ứng chuyển động cho nền */
+}
+
+.search-button:hover {
+  background-color: #2a8d5f; /* Màu nền khi hover */
+}
+
+.header__icon {
+  cursor: pointer;
+}
+
+.header__title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.header__actions {
+  display: flex;
+  gap: 15px;
+}
+
+.header__actions button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.header__actions img {
+  border-radius: 50%;
+  width: 30px;
+}
+
+.header__search {
+  position: relative;
+}
+
+.search__input {
+  position: absolute;
+  top: 35px;
+  right: 0;
+  background-color: white;
+  border-radius: 5px;
+  padding: 5px;
+  display: flex;
+  gap: 5px;
+}
+
+.search__input input {
+  border: 1px solid #ccc;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+.search__input button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+.header__notifications {
+  position: relative;
+}
+
+.notifications__list {
+  position: absolute;
+  top: 35px;
+  right: 0;
+  background-color: white;
+  color: black;
+  border-radius: 5px;
+  padding: 10px;
+  width: 200px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.notifications__list p {
+  margin: 5px 0;
+  font-size: 14px;
+}
