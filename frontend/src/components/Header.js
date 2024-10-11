@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 const Header = () => {
     const location = useLocation();
     const [showOptions, setShowOptions] = useState(false);
+    const [showMenu, setShowMenu] = useState(false);
     const navigate = useNavigate();
 
     const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
@@ -20,6 +21,17 @@ const Header = () => {
     const toggleOptions = () => {
         setShowOptions(!showOptions); 
     };
+
+    const changeMenu = () => {
+
+        setShowMenu(!showMenu);
+    };
+
+    const outSideMove = (e) => {
+        setShowMenu(false);
+    };
+
+
 
     return (
         <div id="header">
@@ -70,8 +82,29 @@ const Header = () => {
                     </>
                 ) : (
                     <>
-                        <Link to="/login" className={`header_nav-items ${location.pathname === '/login' ? 'active' : ''}`}>Login</Link>
-                        <Link to="/register" className={`header_nav-items ${location.pathname === '/register' ? 'active' : ''}`}>Register</Link>
+                        {/* frame less 780 */}
+                        {/* đừng thay đổi tên thẻ */}
+                        <div className={`header_nav-right--hamburger-menu ${showMenu ? 'active':''}`} onClick={changeMenu} onMouseLeave ={outSideMove}>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            {showMenu && (
+                                <div className="header_nav-right--hamburger-menu_box">
+                                    <div className="header_nav-right--hamburger-menu_box--arrow">
+                                    </div>
+                                    <Link to="/login" className={`header_nav-items ${location.pathname === '/login' ? 'active' : ''}`}>Login</Link>
+                                    <Link to="/register" className={`header_nav-items ${location.pathname === '/register' ? 'active' : ''}`}>Register</Link>
+                                </div>
+                            )}
+                        </div>
+
+                        
+
+                        {/* else */}
+                        <div className='header_nav-right--default'>
+                            <Link to="/login" className={`header_nav-items ${location.pathname === '/login' ? 'active' : ''}`}>Login</Link>
+                            <Link to="/register" className={`header_nav-items ${location.pathname === '/register' ? 'active' : ''}`}>Register</Link>
+                        </div>
                     </>
                 )}
             </div>
