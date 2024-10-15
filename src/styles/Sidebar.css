@@ -3,10 +3,11 @@
   grid-area: sidebar;
   overflow-y: auto;
   padding: 20px; /* Khoảng cách bên trong */
-  transition: all 0.5s; /* Hiệu ứng chuyển động khi mở/đóng */
+  transition: transform 0.3s ease; /* Hiệu ứng chuyển động khi mở/đóng */
   width: 250px; /* Đặt chiều rộng của sidebar */
   position: fixed; /* Đặt vị trí cố định */
   z-index: 1000; /* Đặt z-index cao hơn các phần khác */
+  border-radius: 0 15px 15px 0;
   top: 60px; /* Đặt cách navbar 60px */
   height: calc(100% - 60px); /* Chiều cao sidebar, trừ chiều cao navbar */
 }

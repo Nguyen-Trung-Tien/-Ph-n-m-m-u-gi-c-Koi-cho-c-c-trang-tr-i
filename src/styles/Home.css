@@ -41,7 +41,7 @@ main {
 }
 .main__greeting > p {
   font-size: 14px;
-  fonr-weight: 700;
+  font-weight: 700;
   color: #a5aaad;
 }
 .main__cards {
@@ -55,13 +55,19 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: 70px;
+  height: 70px; /* Chiều cao có thể điều chỉnh */
   padding: 25px;
   border-radius: 5px;
-  background: #ffffff;
+  background: #ae1313;
   box-shadow: 5px 5px 13px #ededed, -5px -5px 13px #ffffff;
+  transition: background-color 0.3s; /* Hiệu ứng chuyển màu nền */
+  text-decoration: none; /* Xóa gạch chân khi hover */
+  color: inherit; /* Kế thừa màu sắc của văn bản */
 }
 
+.card:hover {
+  background-color: #e1e785; /* Màu nền khi hover */
+}
 .card_inner {
   display: flex;
   align-items: center;
@@ -154,7 +160,7 @@ card1 {
   border-radius: 5px;
   font-size: 14px;
 }
-card1 {
+card2 {
   background-color: #15c60f;
   color: #097a64;
   text-align: center;
@@ -162,7 +168,7 @@ card1 {
   border-radius: 5px;
   font-size: 14px;
 }
-card1 {
+card3 {
   background-color: #9218a4;
   color: #6f2b56;
   text-align: center;

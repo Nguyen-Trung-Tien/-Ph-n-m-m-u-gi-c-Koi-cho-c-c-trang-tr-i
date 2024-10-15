@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./PaymentManagement.css";
+import "../styles/PaymentManagement.css";
 
 const PaymentManagement = () => {
   const [payments, setPayments] = useState([]);
@@ -10,23 +10,27 @@ const PaymentManagement = () => {
     date: "",
     status: "Pending",
   });
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    // Fetch the existing payments from the backend
     fetch("/api/payments")
       .then((response) => response.json())
       .then((data) => setPayments(data))
       .catch((error) => console.error("Error fetching payments:", error));
   }, []);
 
-  // Handle input changes for the new payment form
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNewPayment({ ...newPayment, [name]: value });
   };
 
-  // Create a new payment
   const handleCreatePayment = () => {
+    if (!newPayment.user || !newPayment.auction || newPayment.amount <= 0) {
+      setError("Please fill in all fields with valid data.");
+      return;
+    }
+    setError("");
+
     fetch("/api/payments", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -43,10 +47,12 @@ const PaymentManagement = () => {
           status: "Pending",
         });
       })
-      .catch((error) => console.error("Error creating payment:", error));
+      .catch((error) => {
+        setError("Error creating payment: " + error.message);
+        console.error("Error creating payment:", error);
+      });
   };
 
-  // Update payment status
   const handleUpdatePayment = (id, status) => {
     fetch(`/api/payments/${id}`, {
       method: "PUT",
@@ -64,15 +70,12 @@ const PaymentManagement = () => {
       .catch((error) => console.error("Error updating payment:", error));
   };
 
-  // Delete payment
   const handleDeletePayment = (id) => {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this payment?"
     );
     if (confirmDelete) {
-      fetch(`/api/payments/${id}`, {
-        method: "DELETE",
-      })
+      fetch(`/api/payments/${id}`, { method: "DELETE" })
         .then((response) => {
           if (response.ok) {
             setPayments(payments.filter((payment) => payment.id !== id));
@@ -85,8 +88,8 @@ const PaymentManagement = () => {
   return (
     <div className="payment-management">
       <h2>Payment Management</h2>
+      {error && <div className="error-message">{error}</div>}
 
-      {/* Form to create a new payment */}
       <div className="create-payment">
         <h3>Create New Payment</h3>
         <label>
@@ -128,7 +131,6 @@ const PaymentManagement = () => {
         <button onClick={handleCreatePayment}>Create Payment</button>
       </div>
 
-      {/* List of existing payments */}
       <div className="payment-list">
         <h3>Payment List</h3>
         <table>
@@ -147,7 +149,7 @@ const PaymentManagement = () => {
               <tr key={payment.id}>
                 <td>{payment.user}</td>
                 <td>{payment.auction}</td>
-                <td>{payment.amount}</td>
+                <td>${payment.amount}</td>
                 <td>{new Date(payment.date).toLocaleDateString()}</td>
                 <td>{payment.status}</td>
                 <td>

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import avatar from "../assets/avt.png";
 import "../styles/Header.css"; // Nhập tệp CSS nếu có
@@ -35,7 +36,11 @@ const Header = ({ toggleSidebar }) => {
       </div>
 
       {/* Tiêu đề trang */}
-      <div className="header__title">Admin Dashboard</div>
+      <div className="header__title">
+        <Link to="/" style={{ color: "inherit", textDecoration: "none" }}>
+          Admin Dashboard
+        </Link>
+      </div>
 
       {/* Các hành động tìm kiếm, thông báo, tài khoản */}
       <div className="header__actions">
@@ -77,7 +82,7 @@ const Header = ({ toggleSidebar }) => {
         </div>
 
         {/* Tài khoản */}
-        <button title="Profile">
+        <button title="Profile" className="header__profile">
           <img width="30" src={avatar} alt="User Avatar" />
         </button>
       </div>

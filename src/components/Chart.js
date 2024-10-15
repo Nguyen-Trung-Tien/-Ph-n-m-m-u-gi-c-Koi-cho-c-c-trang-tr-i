@@ -1,38 +1,67 @@
-import "../../node_modules/react-vis/dist/style.css";
+import React from "react";
+import { Line } from "react-chartjs-2";
 import {
-  XYPlot,
-  LineSeries,
-  XAxis,
-  YAxis,
-  VerticalGridLines,
-  HorizontalGridLines,
-} from "react-vis";
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+
+// Register các thành phần cần thiết của Chart.js
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const Chart = () => {
-  const data = [
-    { x: 0, y: 8 },
-    { x: 1, y: 5 },
-    { x: 2, y: 4 },
-    { x: 3, y: 9 },
-    { x: 4, y: 1 },
-    { x: 5, y: 7 },
-    { x: 6, y: 6 },
-    { x: 7, y: 3 },
-    { x: 8, y: 2 },
-    { x: 9, y: 0 },
-  ];
+  // Dữ liệu cho biểu đồ
+  const data = {
+    labels: [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday",
+    ],
+    datasets: [
+      {
+        label: "Successful Auctions",
+        data: [50, 60, 70, 65, 80, 90, 100], // Giả lập số lượng đấu giá thành công
+        fill: false,
+        borderColor: "rgb(75, 192, 192)",
+        tension: 0.1,
+      },
+    ],
+  };
+
+  // Cấu hình biểu đồ
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "top",
+      },
+      title: {
+        display: true,
+        text: "Successful Auctions Over the Week",
+      },
+    },
+  };
 
   return (
-    <div style={{ marginTop: "15px" }}>
-      <XYPlot height={300} width={300}>
-        <VerticalGridLines />
-        <HorizontalGridLines />
-        <XAxis />
-        <YAxis />
-        <LineSeries data={data} color="red" />
-        <LineSeries data={data} color="purple" />
-        <LineSeries data={data} color="yellow" />
-      </XYPlot>
+    <div>
+      <Line data={data} options={options} />
     </div>
   );
 };
