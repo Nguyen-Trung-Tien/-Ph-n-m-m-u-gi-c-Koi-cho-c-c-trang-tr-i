@@ -12,6 +12,9 @@
   height: calc(100% - 60px); /* Chiều cao sidebar, trừ chiều cao navbar */
 }
 
+#sidebar.hidden {
+  transform: translateX(-100%); /* Ẩn sidebar trên thiết bị nhỏ */
+}
 .sidebar__title {
   display: flex;
   justify-content: space-between;
@@ -108,34 +111,46 @@
 }
 
 .sidebar-responsive {
-  display: block; /* Hiện sidebar khi mở */
+  transform: translateX(0); /* Hiển thị sidebar khi mở */
 }
 
-@media only screen and (max-width: 978px) {
-  #sidebar {
-    display: none; /* Ẩn sidebar trên các thiết bị nhỏ */
+@media (max-width: 768px) {
+  .icon-toggle-sidebar {
+    display: block; /* Hiển thị nút mở sidebar trên mobile */
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1001;
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
   }
 
-  .sidebar__title > i {
-    display: inline; /* Hiện icon ẩn trên thiết bị nhỏ */
+  @media (max-width: 978px) {
+    #sidebar {
+      transform: translateX(-100%); /* Ẩn sidebar mặc định */
+      width: 200px; /* Điều chỉnh chiều rộng trên tablet */
+    }
+
+    .sidebar__title > i {
+      display: inline; /* Hiện icon đóng sidebar */
+    }
   }
-}
 
-.sidebar {
-  position: fixed; /* Cố định vị trí */
-  top: 60px; /* Đặt cách navbar 60px */
-  left: 0; /* Căn chỉnh bên trái */
-  width: 250px; /* Chiều rộng sidebar */
-  height: calc(100% - 60px); /* Chiều cao sidebar, trừ chiều cao navbar */
-  background-color: #fff; /* Màu nền */
-  overflow-y: auto; /* Cuộn dọc nếu nội dung vượt quá */
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Đổ bóng tùy chọn */
-  z-index: 999; /* Đảm bảo nằm trên các thành phần khác */
-  transition: transform 0.3s ease;
-}
+  @media (max-width: 768px) {
+    #sidebar {
+      width: 100%; /* Chiều rộng sidebar cho mobile */
+      height: 100%;
+      top: 0;
+      transform: translateX(-100%); /* Ẩn sidebar mặc định */
+    }
 
-.sidebar.hidden {
-  transform: translateX(-100%); /* Ẩn sidebar ra khỏi màn hình */
+    .sidebar-responsive {
+      transform: translateX(0); /* Hiển thị sidebar khi mở */
+    }
+  }
 }
 .icon-toggle-sidebar {
   position: fixed; /* Cố định vị trí trên màn hình */

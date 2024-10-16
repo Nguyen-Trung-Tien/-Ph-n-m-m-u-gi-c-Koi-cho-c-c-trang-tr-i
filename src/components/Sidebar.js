@@ -54,7 +54,7 @@ const Sidebar = ({ sidebarOpen, closeSidebar }) => {
 
         <div className="sidebar__link">
           <i className="fa fa-power-off"></i>
-          <a href="#">Log out</a>
+          <Link to="/logout">Log out</Link>
         </div>
       </div>
     </div>

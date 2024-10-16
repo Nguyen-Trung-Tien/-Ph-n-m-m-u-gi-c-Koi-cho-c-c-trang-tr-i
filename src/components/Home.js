@@ -15,12 +15,12 @@ const Main = () => {
         </div>
 
         <div className="main__cards">
-          {/* Card for Number of Subscribers */}
+          {/* Card for list of participants */}
           <Link to="/users" className="card">
             <div className="card_inner">
               <i className="fa fa-user-o fa-2x text-lightblue"></i>
               <div>
-                <p className="text-primary-p">Number of Subscribers</p>
+                <p className="text-primary-p">List of participants</p>
                 <span className="font-bold text-title">578</span>
               </div>
             </div>
@@ -30,7 +30,7 @@ const Main = () => {
             <div className="card_inner">
               <i className="fa fa-calendar fa-2x text-red"></i>
               <div>
-                <p className="text-primary-p">Manage Auctions</p>
+                <p className="text-primary-p">Auction Management</p>
                 <span className="font-bold text-title">2456</span>
               </div>
             </div>
@@ -48,11 +48,11 @@ const Main = () => {
           </Link>
 
           {/* Card for Auction Management */}
-          <Link to="/auction-management" className="card">
+          <Link to="/products" className="card">
             <div className="card_inner">
               <i className="fa fa-thumbs-up fa-2x text-green"></i>
               <div>
-                <p className="text-primary-p">Auction Management</p>
+                <p className="text-primary-p">Product Management</p>
                 <span className="font-bold text-title">623</span>
               </div>
             </div>

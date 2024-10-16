@@ -9,6 +9,8 @@ import "./styles/App.css";
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PaymentManagement from "./components/PaymentManagement";
+import Logout from "./components/Logout"; // Đường dẫn đến component Logout
+import Login from "./components/Login"; // Trang đăng nhập
 
 const App = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false); // Trạng thái sidebar
@@ -36,9 +38,11 @@ const App = () => {
         <Routes>
           {/* Các Route điều hướng đến các component tương ứng */}
           <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/logout" element={<Logout />} />
           <Route path="/users" element={<UserManagement />} />
-          <Route path="/auction-history" element={<AuctionHistory />} />
           <Route path="/products" element={<ProductManagement />} />
+          <Route path="/auction-history" element={<AuctionHistory />} />
           <Route path="/auction-management" element={<AuctionManagement />} />
           <Route path="/payment-management" element={<PaymentManagement />} />
         </Routes>

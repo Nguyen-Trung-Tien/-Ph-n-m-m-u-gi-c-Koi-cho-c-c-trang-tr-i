@@ -4,7 +4,6 @@ import avatar from "../assets/avt.png";
 import "../styles/Header.css"; // Nhập tệp CSS nếu có
 
 const Header = ({ toggleSidebar }) => {
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
 
@@ -16,16 +15,14 @@ const Header = ({ toggleSidebar }) => {
     }
   };
 
-  // Hiển thị/ẩn input tìm kiếm
-  const toggleSearch = () => {
-    setIsSearchOpen(!isSearchOpen);
-    setIsNotificationsOpen(false); // Đóng thông báo khi mở tìm kiếm
+  // Xử lý xóa thanh tìm kiếm
+  const clearSearch = () => {
+    setSearchQuery("");
   };
 
   // Hiển thị/ẩn danh sách thông báo
   const toggleNotifications = () => {
     setIsNotificationsOpen(!isNotificationsOpen);
-    setIsSearchOpen(false); // Đóng tìm kiếm khi mở thông báo
   };
 
   return (
@@ -42,31 +39,27 @@ const Header = ({ toggleSidebar }) => {
         </Link>
       </div>
 
-      {/* Các hành động tìm kiếm, thông báo, tài khoản */}
-      <div className="header__actions">
-        {/* Tìm kiếm */}
-        <div className="header__search">
-          <button title="Search" onClick={toggleSearch}>
-            <i className="fa fa-search"></i>
+      {/* Thanh tìm kiếm */}
+      <div className="header__search">
+        <input
+          type="text"
+          placeholder="Look up to you want!"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="search__input"
+        />
+        {searchQuery && (
+          <button onClick={clearSearch} className="clear__button">
+            <i className="fa fa-times"></i>
           </button>
-          {isSearchOpen && (
-            <div className="search__input">
-              <input
-                type="text"
-                placeholder="Search..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                onKeyPress={(e) => {
-                  if (e.key === "Enter") handleSearch();
-                }}
-              />
-              <button onClick={handleSearch}>
-                <i className="fa fa-search"></i>
-              </button>
-            </div>
-          )}
-        </div>
+        )}
+        <button onClick={handleSearch} className="search__button">
+          <i className="fa fa-search"></i>
+        </button>
+      </div>
 
+      {/* Các hành động thông báo, tài khoản */}
+      <div className="header__actions">
         {/* Thông báo */}
         <div className="header__notifications">
           <button title="Notifications" onClick={toggleNotifications}>
