@@ -2,12 +2,21 @@ package com.example.auctionkoi.entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "bid")
 public class Bid {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "bid_id")
+    private Long bidId;
+
+    @Column(name = "current_price")
+    private Double currentPrice;
+
+    @Column(name = "auction_start_time")
+    private LocalDateTime auctionStartTime;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -17,15 +26,35 @@ public class Bid {
     @JoinColumn(name = "koi_id")
     private Koi koi;
 
-    private double amount;
+    private int amount;
+
+
 
     // Getters and Setters
-    public Long getId() {
-        return id;
+
+
+    public LocalDateTime getAuctionStartTime() {
+        return auctionStartTime;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setAuctionStartTime(LocalDateTime auctionStartTime) {
+        this.auctionStartTime = auctionStartTime;
+    }
+
+    public Double getCurrentPrice() {
+        return currentPrice;
+    }
+
+    public void setCurrentPrice(Double currentPrice) {
+        this.currentPrice = currentPrice;
+    }
+
+    public Long getBidId() {
+        return bidId;
+    }
+
+    public void setBidId(Long bidId) {
+        this.bidId = bidId;
     }
 
     public User getUser() {
@@ -44,11 +73,12 @@ public class Bid {
         this.koi = koi;
     }
 
-    public double getAmount() {
+    public int getAmount() {
         return amount;
     }
 
-    public void setAmount(double amount) {
+    public void setAmount(int amount) {
         this.amount = amount;
     }
+
 }

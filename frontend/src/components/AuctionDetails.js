@@ -1,31 +1,157 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../css/auction-details.css';
+import { useUser } from '../UserContext/UserContext';
+import axios from 'axios';
 
 const AuctionDetails = () => {
-    const { id } = useParams();
+    const { id } = useParams(); 
+    const [koiDetails, setKoiDetails] = useState(null);
+    const [errorMessage, setErrorMessage] = useState('');
+    const [timeRemaining, setTimeRemaining] = useState('');
+    const [isAuctionEnded, setIsAuctionEnded] = useState(false);
+    const [bidPrice, setBidPrice] = useState('');
+    const { user, setUser } = useUser();
+    const [temporaryBid, setTemporaryBid] = useState(null);
 
-    const items = [
-        { id: 1, type: 'koi', name: "ca koi 1", breeder:'Anos' , size: 'small', Length:'44',age:'2' ,color: 'blue', price: 150, image: '../img/h1.jpg' },
-        { id: 2, type: 'koi', name: "ca koi 2",breeder:'Anos' , size: 'medium', Length:'44',age:'2', color: 'red', price: 150, image: '../img/h2.jpg' },
-        { id: 3, type: 'koi', name: "ca koi 3",breeder:'Anos' , size: 'medium', Length:'44',age:'2', color: 'red', price: 150, image: '../img/h2.jpg' },
-        { id: 4, type: 'butterfly', name: "ca koi 4",breeder:'Anos' , size: 'small', Length:'44',age:'2', color: 'red', price: 150, image: '../img/h4.jpg' },
-        { id: 5, type: 'koi', name: "ca koi 5",breeder:'Anos' , size: 'large', Length:'44',age:'2', color: 'red', price: 150, image: '../img/h5.jpg' },
-        { id: 6, type: 'koi', name: "ca koi 6",breeder:'Anos' , size: 'small', Length:'44',age:'2', color: 'red', price: 150, image: '../img/h6.jpg' },
-        { id: 7, type: 'butterfly', name: "ca koi 7",breeder:'Anos' , size:'small', Length:'44',age:'2', color: 'red', price: 150, image: '../img/h1.jpg' },
-        { id: 8, type: 'koi', name: "ca koi 8",breeder:'Anos' , size: 'large', Length:'44',age:'2', color: 'red', price: 150, image: '../img/h1.jpg' },
-    ];
+    useEffect(() => {
+        const fetchKoiDetails = async () => {
+            try {
+                console.log(`Fetching Koi Details for Koi ID: ${id}...`);
+                const response = await axios.get(`http://localhost:8080/auction/info/koi/${id}`);
+                console.log("Koi Details fetched successfully:", response.data);
+                const koiData = response.data[0];
+                setKoiDetails(koiData);
 
-    const auctionItem = items.find(item => item.id === parseInt(id));
+                calculateTimeRemaining(koiData.auctionEndTime);
+            } catch (error) {
+                console.error('Lỗi khi lấy chi tiết cá koi:', error);
+                setErrorMessage('Không thể lấy chi tiết cá koi.');
+            }
+        };
 
-    if (!auctionItem) {
-        return (
-            <div className="container text-center">
-                <h1>Item not found</h1>
-            </div>
-        );
+        fetchKoiDetails();
+    }, [id]);
+
+    useEffect(() => {
+        let timer;
+        if (koiDetails && koiDetails.auctionEndTime) {
+            timer = setInterval(() => {
+                calculateTimeRemaining(koiDetails.auctionEndTime);
+            }, 1000);
+        }
+
+        return () => clearInterval(timer); 
+    }, [koiDetails]);
+
+    const calculateTimeRemaining = (auctionEndTime) => {
+        const endTime = new Date(auctionEndTime);
+        const remainingTime = endTime - Date.now();
+    
+        if (remainingTime > 0) {
+            const hours = Math.floor((remainingTime % (1000 * 3600 * 24)) / (1000 * 3600));
+            const minutes = Math.floor((remainingTime % (1000 * 3600)) / (1000 * 60));
+            const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+            setTimeRemaining(`${hours}h ${minutes}m ${seconds}s`);
+            setIsAuctionEnded(false);
+        } else {
+            setTimeRemaining("Phiên đấu giá đã kết thúc");
+            setIsAuctionEnded(true);
+            
+            if (temporaryBid) {
+                updateWallet(user.id, temporaryBid);
+                setTemporaryBid(null); 
+            }
+        }
+    };
+
+    const handlePlaceBid = async () => {
+        if (!user) {
+            alert('Bạn cần đăng nhập để thực hiện đấu giá.');
+            return;
+        }
+
+        const bidAmount = parseFloat(bidPrice);
+        const startingPrice = parseFloat(koiDetails.startingPrice);
+
+        if (bidAmount <= startingPrice) {
+            alert('Giá đấu phải cao hơn giá khởi điểm.');
+            return;
+        }
+
+        if (bidAmount > user.wallet) {
+            alert('Giá đấu không được vượt quá số tiền trong ví.');
+            return;
+        }
+
+        if (isAuctionEnded) {
+            alert('Phiên đấu giá đã kết thúc, không thể đặt giá đấu.');
+            return;
+        }
+
+        try {
+            const bidResponse = await axios.put(`http://localhost:8080/auction/bids/${koiDetails.bidId}`, {
+                amount: koiDetails.amount + 1,
+                currentPrice: bidAmount,
+                koiId: koiDetails.koiId,
+                userId: user.id,
+                auctionStartTime: koiDetails.auctionStartTime
+            }, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            setTemporaryBid(bidAmount);
+
+            setKoiDetails((prevDetails) => ({
+                ...prevDetails,
+                currentPrice: bidAmount,
+                amount: prevDetails.amount + 1
+            }));
+            setBidPrice('');
+            alert(`Đặt giá đấu thành công`);
+
+        } catch (error) {
+            console.error('Lỗi khi đặt giá đấu:', error);
+            if (error.response) {
+                alert(`Đặt giá đấu không thành công: ${error.response.data}`);
+            } else {
+                alert('Đặt giá đấu không thành công.');
+            }
+        }
+    };
+
+    
+    const updateWallet = async (userId, bidAmount) => {
+        const newWalletBalance = user.wallet - bidAmount; 
+    
+        try {
+            await axios.put(`http://localhost:8080/auction/users/update/${userId}`, {
+                wallet: newWalletBalance 
+            }, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+    
+            setUser({ ...user, wallet: newWalletBalance });
+            localStorage.setItem('user', JSON.stringify({ ...user, wallet: newWalletBalance }));
+        } catch (error) {
+            console.error('Lỗi khi cập nhật wallet:', error);
+            alert('Không thể cập nhật số dư trong ví.');
+        }
+    };
+    
+
+    if (errorMessage) {
+        return <p>{errorMessage}</p>;
+    }
+
+    if (!koiDetails) {
+        return <p>Loading...</p>;
     }
 
     return (
@@ -35,81 +161,94 @@ const AuctionDetails = () => {
                 <div className="container-auction-details text-center">
                     <div className="auction-details-wrapper row">
                         <div className="col-md-5 auction-item-image">
-                            <img src={auctionItem.image} alt={auctionItem.name} className="img-fluid" />
+                            <img src={`../img/h${koiDetails.koiId}.jpg`} alt={koiDetails.koiName} className="img-fluid" />
                         </div>
                         <div className="col-md-7 auction-item-info">
                             <div className="container text-left">
                                 <section className="koi-info">
-                                        <div className="card-header">
-                                            <h2 className="auction-item-title">{auctionItem.name}</h2>
+                                    <div className="card-header">
+                                        <h2 className="auction-item-title">{koiDetails.koiName}</h2>
+                                    </div>
+                                    <div className="row-cols-2 row-custom d-flex flex-wrap g-3">
+                                        <div className="col-md-6 card-info">
+                                            <span>
+                                                <i className="fa-solid fa-venus-mars"></i>
+                                                Sex
+                                            </span>
+                                            <p>{koiDetails.sex || "Unknown"}</p>
                                         </div>
-                                        <div className="row-cols-2 row-custom d-flex flex-wrap g-3">
-                                            <div className="col-md-6 card-info">
-                                                <span>
-                                                    <i className="fa-solid fa-venus-mars"></i>
-                                                    Sex
-                                                </span>
-                                                <p>Unknown</p>
-                                            </div>
-                                            <div className="col-md-6 card-info">
-                                                <span>
-                                                    <i className="fa-solid fa-ruler"></i>
-                                                    Length
-                                                </span>
-                                                <p>{auctionItem.Length}cm</p>
-                                            </div>
-                                            <div className="col-md-6 card-info">
-                                                <span>
-                                                    <i className="fa-solid fa-earth-americas"></i>
-                                                    Breeder
-                                                </span>
-                                                <p>{auctionItem.breeder}</p>
-                                            </div>
-                                            <div className="col-md-6 card-info">
-                                                <span>
-                                                    <i className="fa-solid fa-cake-candles"></i>
-                                                    Age
-                                                </span>
-                                                <p>{auctionItem.age}y</p>
-                                            </div>
+                                        <div className="col-md-6 card-info">
+                                            <span>
+                                                <i className="fa-solid fa-ruler"></i>
+                                                Length
+                                            </span>
+                                            <p>{koiDetails.length} cm</p>
                                         </div>
+                                        <div className="col-md-6 card-info">
+                                            <span>
+                                                <i className="fa-solid fa-earth-americas"></i>
+                                                Breeder
+                                            </span>
+                                            <p>{koiDetails.breederName || "Unknown"}</p>
+                                        </div>
+                                        <div className="col-md-6 card-info">
+                                            <span>
+                                                <i className="fa-solid fa-cake-candles"></i>
+                                                Age
+                                            </span>
+                                            <p>{koiDetails.age} y</p>
+                                        </div>
+                                    </div>
                                 </section>
                                 <section className="koi-info">
                                     <div className="row-cols-2 row-custom d-flex flex-wrap">
                                         <div className="col card-info">
                                             <span>Starting Price</span>
-                                            <p>{auctionItem.price}$</p>
+                                            <p>{koiDetails.startingPrice}$</p>
                                         </div>
                                         <div className="col card-info">
                                             <span>Current Highest Price</span>
-                                            <p>3000$</p>
+                                            <p>{koiDetails.currentPrice}$</p>
                                         </div>
                                         <div className="col card-info">
                                             <span>Start Date:</span>
-                                            <p>hiện chưa có</p>
+                                            <p>{koiDetails.auctionStartTime || "Hiện chưa có"}</p>
                                         </div>
                                         <div className="col card-info">
                                             <span>End Date</span>
-                                            <p>hiện chưa có</p>
+                                            <p>{koiDetails.auctionEndTime || "Hiện chưa có"}</p>
                                         </div>
                                     </div>
                                 </section>
                                 <section className="koi-info">
                                     <div className="time-remaining">
                                         <span>Time Remaining</span>
-                                        <p>Hiện chưa có</p>
+                                        <p>{timeRemaining}</p>
                                     </div>
                                     <div className="Input-price-frame">
-                                        <input className="Input-price" type="Number" placeholder={"Mời nhập giá"}/>
-                                        <a href="#" className="btn btn-primary btn-bid">Place Bid</a>
+                                        <input
+                                            className="Input-price"
+                                            type="number"
+                                            placeholder={"Mời nhập giá"}
+                                            value={bidPrice}
+                                            onChange={(e) => setBidPrice(e.target.value)}
+                                            disabled={isAuctionEnded}
+                                        />
+                                        <button
+                                            className="btn btn-primary btn-bid"
+                                            onClick={handlePlaceBid}
+                                            disabled={isAuctionEnded}
+                                        >
+                                            Place Bid
+                                        </button>
                                     </div>
                                 </section>
                             </div>
                         </div>
                     </div>
                 </div>
-                <Footer/>
             </div>
+            <Footer />
         </div>
     );
 };

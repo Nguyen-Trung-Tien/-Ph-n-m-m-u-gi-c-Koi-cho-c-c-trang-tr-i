@@ -16,8 +16,6 @@ const Footer = () => {
                         <li><a href="/">Trang Chủ</a></li>
                         <li><a href="/auction">Đấu Giá</a></li>
                         <li><a href="/help">Hỗ Trợ</a></li>
-                        <li><a href="/login">Đăng Nhập</a></li>
-                        <li><a href="/register">Đăng Ký</a></li>
                     </ul>
                 </div>
                 <div className="footer-section">

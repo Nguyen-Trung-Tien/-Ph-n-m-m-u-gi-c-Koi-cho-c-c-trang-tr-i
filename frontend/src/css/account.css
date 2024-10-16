@@ -1,0 +1,13 @@
+.nav-link {
+    cursor: pointer;
+    font-size: 14px !important;
+}
+
+.nav-link.active {
+    font-weight: bold;
+    color: #007bff;
+}
+
+#content .container {
+    padding-top: 20px;
+}

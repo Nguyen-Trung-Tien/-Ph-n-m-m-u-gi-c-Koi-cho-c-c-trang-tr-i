@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useUser } from '../UserContext/UserContext';
 
 const Header = () => {
     const location = useLocation();
     const [showOptions, setShowOptions] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
     const navigate = useNavigate();
+    const { user, setUser } = useUser();
 
     const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
-    const user = isAuthenticated ? JSON.parse(localStorage.getItem('user')) : null;
-
 
     const handleLogout = () => {
         localStorage.removeItem('isAuthenticated');
-        localStorage.removeItem('user')
-        window.location.reload();
+        localStorage.removeItem('user');
+        setUser(null); 
         navigate('/'); 
     };
 
@@ -23,7 +23,6 @@ const Header = () => {
     };
 
     const changeMenu = () => {
-
         setShowMenu(!showMenu);
     };
 
@@ -31,13 +30,11 @@ const Header = () => {
         setShowMenu(false);
     };
 
-
-
     return (
         <div id="header">
             <h1 className="Home_text">
                 <div className="logo_koi">
-                    <img src="../logo/logoKoi.png" className="koi_image"/>
+                    <img src="../logo/logoKoi.png" className="koi_image" alt="Koi Logo"/>
                 </div>
                 <div className="logo_title">
                     <Link to="/">AUCTIONKOI</Link>
@@ -49,14 +46,13 @@ const Header = () => {
                         <i className="fa-solid fa-house"></i>
                         <span className="header_nav-text">Home</span>
                     </Link>
-                    <Link to="/auction"
-                          className={`header_nav-items ${location.pathname.startsWith('/auction') ? 'active' : ''}`}>
+                    <Link to="/auction" className={`header_nav-items ${location.pathname.startsWith('/auction') ? 'active' : ''}`}>
                         <i className="fa-solid fa-gavel"></i>
                         <span className="header_nav-text">Auctions</span>
                     </Link>
-                    <Link to="/help" className={`header_nav-items ${location.pathname === '/help' ? 'active' : ''}`}>
+                    <Link to="/about" className={`header_nav-items ${location.pathname === '/about' ? 'active' : ''}`}>
                         <i className="fa-regular fa-circle-question"></i>
-                        <span className="header_nav-text">Help</span>
+                        <span className="header_nav-text">About</span>
                     </Link>
                 </div>
             </div>
@@ -64,11 +60,11 @@ const Header = () => {
                 {isAuthenticated ? (
                     <>
                         <div className="header_nav-name_frame" onClick={toggleOptions}>
-                            <span className="header_nav-name">Welcome, {user?.firstName} {user?.lastName}</span>
+                            <span className="header_nav-name">Welcome, {user?.firstName} {user?.lastName} (Còn {user?.wallet}$)</span>
                             <i className="fa-solid fa-chevron-down"></i>
                         </div>
                         {showOptions && ( 
-                             <nav className={`header_nav-name_option ${showOptions ? 'show' : ''}`}>
+                            <nav className={`header_nav-name_option ${showOptions ? 'show' : ''}`}>
                                 <ul>
                                     <li>
                                         <Link to="../account" className='btn btn-account'>Account</Link>
@@ -82,25 +78,18 @@ const Header = () => {
                     </>
                 ) : (
                     <>
-                        {/* frame less 780 */}
-                        {/* đừng thay đổi tên thẻ */}
-                        <div className={`header_nav-right--hamburger-menu ${showMenu ? 'active':''}`} onClick={changeMenu} onMouseLeave ={outSideMove}>
+                        <div className={`header_nav-right--hamburger-menu ${showMenu ? 'active':''}`} onClick={changeMenu} onMouseLeave={outSideMove}>
                             <span></span>
                             <span></span>
                             <span></span>
                             {showMenu && (
                                 <div className="header_nav-right--hamburger-menu_box">
-                                    <div className="header_nav-right--hamburger-menu_box--arrow">
-                                    </div>
+                                    <div className="header_nav-right--hamburger-menu_box--arrow"></div>
                                     <Link to="/login" className={`header_nav-items ${location.pathname === '/login' ? 'active' : ''}`}>Login</Link>
                                     <Link to="/register" className={`header_nav-items ${location.pathname === '/register' ? 'active' : ''}`}>Register</Link>
                                 </div>
                             )}
                         </div>
-
-                        
-
-                        {/* else */}
                         <div className='header_nav-right--default'>
                             <Link to="/login" className={`header_nav-items ${location.pathname === '/login' ? 'active' : ''}`}>Login</Link>
                             <Link to="/register" className={`header_nav-items ${location.pathname === '/register' ? 'active' : ''}`}>Register</Link>

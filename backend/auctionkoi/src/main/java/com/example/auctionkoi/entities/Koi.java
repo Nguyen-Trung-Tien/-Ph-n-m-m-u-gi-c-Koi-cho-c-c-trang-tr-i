@@ -9,38 +9,70 @@ import java.time.LocalDateTime;
 public class Koi {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "koi_id")
+    private Long koiId;
 
-    private String name;
-    private String description;
+    private String koiName;
     private BigDecimal startingPrice;
+    private int length;
+    private int age;
+    private String sex;
 
     @Column(name = "auction_end_time")
     private LocalDateTime auctionEndTime;
 
+    @Column(name = "breeder_id")
+    private Long breederId;
+
     // Getters and Setters
-    public Long getId() {
-        return id;
+
+
+    public String getSex() {
+        return sex;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 
-    public String getName() {
-        return name;
+    public int getAge() {
+        return age;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAge(int age) {
+        this.age = age;
     }
 
-    public String getDescription() {
-        return description;
+    public int getLength() {
+        return length;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setLength(int length) {
+        this.length = length;
+    }
+
+    public Long getBreederId() {
+        return breederId;
+    }
+
+    public void setBreederId(Long breederId) {
+        this.breederId = breederId;
+    }
+
+    public Long getKoiId() {
+        return koiId;
+    }
+
+    public void setKoiId(Long koiId) {
+        this.koiId = koiId;
+    }
+
+    public String getKoiName() {
+        return koiName;
+    }
+
+    public void setKoiName(String name) {
+        this.koiName = name;
     }
 
     public BigDecimal getStartingPrice() {

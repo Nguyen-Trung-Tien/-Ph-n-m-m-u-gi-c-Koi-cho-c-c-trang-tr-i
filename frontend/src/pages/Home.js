@@ -23,7 +23,7 @@ const Home = () => {
                     
                     <div className="button-container">
                         <a href="/auction" className="btn btn-Auction">View Auctions</a>
-                        <a href="/help" className="btn btn-Learn">Learn More</a>
+                        <a href="/about" className="btn btn-Learn">Learn More</a>
                     </div>
                 </div>
                 <div className="trademark-container">

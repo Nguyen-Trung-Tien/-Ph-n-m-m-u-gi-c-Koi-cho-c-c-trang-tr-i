@@ -3,12 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import '../css/login.css';
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { useUser } from '../UserContext/UserContext';
 
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const navigate = useNavigate();
+    const { setUser } = useUser();
 
     const handleLogin = (event) => {
         event.preventDefault();
@@ -20,12 +22,18 @@ const Login = () => {
             },
             body: JSON.stringify({ username, password }),
         })
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Mã trạng thái không phải 200'); 
+            }
+            return response.json();
+        })
         .then(data => {
             if (data.message === "successful") {
                 console.log('Đăng nhập thành công:', data.user);
                 localStorage.setItem('isAuthenticated', 'true');
                 localStorage.setItem('user', JSON.stringify(data.user));
+                setUser(data.user); 
                 navigate('/'); 
             } else {
                 console.error('Đăng nhập thất bại:', data.message);

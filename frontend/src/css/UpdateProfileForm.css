@@ -1,0 +1,69 @@
+.update-profile-form {
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: rgb(213, 213, 217);
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+}
+
+.update-profile-form h2 {
+    text-align: center;
+    color: #333;
+    font-size: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.update-profile-form label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+    border-radius: 4px;
+    padding: 4px; 
+    font-size: 15px;
+}
+
+.update-profile-form input {
+    width: 100%;
+    padding: 10px;
+    background-color: rgb(213, 213, 217);
+    border: 1px solid #000;
+    border-radius: 20px;
+    transition: border-color 0.3s ease;
+    font-size: 14px;
+}
+
+.update-profile-form input:focus {
+    border-color: red;
+    outline: none;
+}
+
+.update-profile-form input::placeholder {
+    color: #aaa; 
+    font-style: italic;
+    font-size: 14px; 
+    opacity: 1;
+    font-family: "Montserrat", sans-serif;
+}
+
+.update-profile-form button {
+    width: 100%;
+    padding: 15px 20px;
+    background-color: #4a5568;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+.update-profile-form button:hover {
+    background-color: #2d3748;
+}

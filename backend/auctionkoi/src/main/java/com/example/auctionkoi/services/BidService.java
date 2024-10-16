@@ -13,11 +13,6 @@ public class BidService {
     @Autowired
     private BidRepository bidRepository;
 
-    public Bid createBid(Bid bid) {
-        // Kiểm tra và xử lý nếu cần thiết trước khi lưu vào DB
-        return bidRepository.save(bid);
-    }
-
     public List<Bid> getAllBids() {
         return bidRepository.findAll();
     }
@@ -27,8 +22,22 @@ public class BidService {
                 .orElseThrow(() -> new RuntimeException("Bid not found"));
     }
 
+    public List<Bid> getBidsByKoiId(Long koiId) {
+        return bidRepository.findAllByKoi_KoiId(koiId);
+    }
+
     public void deleteBid(Long bidId) {
         Bid bid = getBid(bidId);
         bidRepository.delete(bid);
+    }
+
+    public Bid createBid(Bid bid) {
+        return bidRepository.save(bid);
+    }
+
+    public Double getCurrentBidPrice(Long koiId) {
+        return bidRepository.findTopByKoi_KoiIdOrderByCurrentPriceDesc(koiId)
+                .map(Bid::getCurrentPrice)
+                .orElse(0.0); // Nếu không có bid nào, trả về 0
     }
 }

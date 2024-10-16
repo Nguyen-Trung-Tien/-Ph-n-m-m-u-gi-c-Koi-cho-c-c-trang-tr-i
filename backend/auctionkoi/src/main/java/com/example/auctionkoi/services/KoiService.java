@@ -14,7 +14,6 @@ public class KoiService {
     private KoiRepository koiRepository;
 
     public Koi createKoi(Koi koi) {
-        // Kiểm tra và xử lý nếu cần thiết trước khi lưu vào DB
         return koiRepository.save(koi);
     }
 
@@ -30,5 +29,9 @@ public class KoiService {
     public void deleteKoi(Long koiId) {
         Koi koi = getKoi(koiId);
         koiRepository.delete(koi);
+    }
+
+    public Koi updateKoi(Koi koi) {
+        return koiRepository.save(koi);
     }
 }

@@ -1,13 +1,16 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client'; // Thay đổi import này
+import ReactDOM from 'react-dom/client';
 import App from './App';
 import './index.css';
+import { UserProvider } from '../src/UserContext/UserContext';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-const root = ReactDOM.createRoot(document.getElementById('root')); // Tạo root
+const root = ReactDOM.createRoot(document.getElementById('root')); 
 root.render(
-    <React.StrictMode>
-        <App />
-    </React.StrictMode>
+    <UserProvider>    
+        <React.StrictMode>
+            <App />
+        </React.StrictMode>
+    </UserProvider>
 );

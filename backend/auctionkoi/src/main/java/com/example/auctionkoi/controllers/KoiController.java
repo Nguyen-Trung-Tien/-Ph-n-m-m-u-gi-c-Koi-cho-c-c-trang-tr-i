@@ -9,17 +9,18 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/koi")
+@CrossOrigin(origins = "http://localhost:3000")
 public class KoiController {
 
     @Autowired
     private KoiService koiService;
 
-    @PostMapping
+    @PostMapping("/create")
     public Koi createKoi(@RequestBody Koi koi) {
         return koiService.createKoi(koi);
     }
 
-    @GetMapping
+    @GetMapping("/list")
     public List<Koi> getAllKoi() {
         return koiService.getAllKoi();
     }

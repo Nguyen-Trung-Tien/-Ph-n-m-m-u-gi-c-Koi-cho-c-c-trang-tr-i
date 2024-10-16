@@ -1,5 +1,6 @@
 package com.example.auctionkoi.controllers;
 
+import com.example.auctionkoi.dto.request.ChangePasswordRequest;
 import com.example.auctionkoi.dto.request.UserCreationRequest;
 import com.example.auctionkoi.dto.request.UserLoginRequest;
 import com.example.auctionkoi.dto.request.UserUpdateRequest;
@@ -35,9 +36,13 @@ public class UserController {
         return ResponseEntity.ok(Map.of(
                 "message", "successful",
                 "user", Map.of(
+                        "id", user.getId(),
                         "username", user.getUsername(),
                         "firstName", user.getFirstName(),
-                        "lastName", user.getLastName()
+                        "lastName", user.getLastName(),
+                        "email", user.getEmail(),
+                        "wallet",user.getWallet(),
+                        "phoneNumber",user.getPhoneNumber()
                 )
         ));
     }
@@ -53,7 +58,7 @@ public class UserController {
         return userService.getUser(userId);
     }
 
-    @PutMapping("/{userId}")
+    @PutMapping("/update/{userId}")
     public User updateUser(@PathVariable Long userId, @RequestBody UserUpdateRequest request) {
         return userService.updateUser(userId, request);
     }
@@ -62,5 +67,18 @@ public class UserController {
     public String deleteUser(@PathVariable Long userId) {
         userService.deleteUser(userId);
         return "User deleted successfully";
+    }
+
+    @PutMapping("/change-password")
+    public ResponseEntity<?> changePassword(@RequestBody ChangePasswordRequest request) {
+        String response = userService.changePassword(request);
+        if ("successful".equals(response)) {
+            return ResponseEntity.ok("{\"message\": \"successful\"}");
+        } else if ("failed".equals(response)) {
+            return ResponseEntity.ok("{\"message\": \"duplicate\"}");
+
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"message\": \"" + response + "\"}");
+        }
     }
 }

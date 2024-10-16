@@ -5,10 +5,27 @@ public class UserCreationRequest {
     private String password;
     private String firstName;
     private String lastName;
+    private String phoneNumber;
     private String email;
-
+    private int wallet;
     // Getters and Setters
 
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public int getWallet() {
+        return wallet;
+    }
+
+    public void setWallet(int wallet) {
+        this.wallet = wallet;
+    }
 
     public String getUsername() {
         return username;

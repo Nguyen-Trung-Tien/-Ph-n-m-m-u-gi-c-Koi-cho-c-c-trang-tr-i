@@ -3,11 +3,31 @@ package com.example.auctionkoi.dto.request;
 public class UserUpdateRequest {
     private String password;
     private String firstName;
+    private String phoneNumber;
     private String lastName;
     private String email;
+    private Integer wallet;
+
 
 
     // Getters and Setters
+
+
+    public Integer getWallet() {
+        return wallet;
+    }
+
+    public void setWallet(Integer wallet) {
+        this.wallet = wallet;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
     public String getPassword() {
         return password;

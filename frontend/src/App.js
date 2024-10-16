@@ -9,6 +9,7 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import Account from './pages/Account';
 import Auction from './pages/Auction';
+import About from './pages/About'
 import AuctionDetails from './components/AuctionDetails';
 
 const App = () => {
@@ -20,6 +21,7 @@ const App = () => {
                 <Route path="/login" element={<Login />}/>
                 <Route path="/account" element={<Account />} />
                 <Route path='/auction' element={<Auction/>}/>
+                <Route path="/about" element={<About/>}/>
                 <Route path="/auction/:id" element={<AuctionDetails/>} />
             </Routes>
         </Router>

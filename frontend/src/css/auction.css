@@ -4,6 +4,7 @@
 
 #content {
     padding-top: 64px;
+    min-height: 800px;
     background-color: rgb(230, 230, 233);
     font-family: var(--theme-font-family-base);
 }
