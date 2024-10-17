@@ -98,7 +98,6 @@ public class UserService {
         }
         user.setPassword(request.getNewPassword());
         userRepository.save(user);
-
         return "successful";
     }
 

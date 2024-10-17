@@ -17,7 +17,6 @@ public class BreederService {
         // Kiểm tra và xử lý nếu cần thiết trước khi lưu vào DB
         return breederRepository.save(breeder);
     }
-
     public List<Breeder> getAllBreeders() {
         return breederRepository.findAll();
     }

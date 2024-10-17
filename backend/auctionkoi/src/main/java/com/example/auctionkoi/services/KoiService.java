@@ -25,7 +25,6 @@ public class KoiService {
         return koiRepository.findById(koiId)
                 .orElseThrow(() -> new RuntimeException("Koi not found"));
     }
-
     public void deleteKoi(Long koiId) {
         Koi koi = getKoi(koiId);
         koiRepository.delete(koi);
