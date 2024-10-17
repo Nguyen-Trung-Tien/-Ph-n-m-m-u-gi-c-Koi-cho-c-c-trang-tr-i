@@ -13,8 +13,6 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 public class AuctionController {
 
-
-
     @Autowired
     private AuctionService auctionService;
 

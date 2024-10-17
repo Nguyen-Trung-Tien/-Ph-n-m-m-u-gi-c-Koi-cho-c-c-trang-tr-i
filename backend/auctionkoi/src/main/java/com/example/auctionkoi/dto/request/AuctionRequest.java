@@ -20,7 +20,7 @@ public class AuctionRequest {
     private String breederName;
     private String breederDescription;
 
-
+// Getters and Setters
     public LocalDateTime getAuctionStartTime() {
         return auctionStartTime;
     }

@@ -29,9 +29,7 @@ public class Bid {
     private int amount;
 
 
-
     // Getters and Setters
-
 
     public LocalDateTime getAuctionStartTime() {
         return auctionStartTime;

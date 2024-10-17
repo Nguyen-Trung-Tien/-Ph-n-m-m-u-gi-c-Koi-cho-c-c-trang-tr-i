@@ -7,9 +7,8 @@ public class UserCreationRequest {
     private String lastName;
     private String phoneNumber;
     private String email;
-    private int wallet;
+    private int wallet; // thêm ví cho người dùng
     // Getters and Setters
-
 
     public String getPhoneNumber() {
         return phoneNumber;

@@ -17,7 +17,7 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
-
+// truy cập vào UserRepository để thực hiện các thao tác với database
     public User createUser(UserCreationRequest request) {
         if (userRepository.findByUsername(request.getUsername()).isPresent()) {
             throw new RuntimeException("Username already exists");
@@ -41,7 +41,7 @@ public class UserService {
         return userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
     }
-
+// trả về một user dựa trên id, nếu không tìm thấy user nào thì sẽ throw ra một exception
     public User updateUser(Long userId, UserUpdateRequest request) {
         User user = getUser(userId);
 
@@ -69,7 +69,7 @@ public class UserService {
         User user = getUser(userId);
         userRepository.delete(user);
     }
-
+// xóa một user dựa trên id, nếu không tìm thấy user nào thì sẽ throw ra một exception
     public User loginUser(UserLoginRequest request) {
         Optional<User> optionalUser = userRepository.findByUsername(request.getUsername());
 
@@ -85,7 +85,7 @@ public class UserService {
 
         return user;
     }
-
+// trả về một user dựa trên username và password, nếu không tìm thấy user nào thì sẽ throw ra một exception
     public String changePassword(ChangePasswordRequest request) {
         User user = userRepository.findById(request.getId()).orElseThrow(() -> new RuntimeException("User not found"));
 
@@ -96,7 +96,6 @@ public class UserService {
         if (user.getPassword().equals(request.getNewPassword())) {
             return "duplicate";
         }
-
         user.setPassword(request.getNewPassword());
         userRepository.save(user);
 

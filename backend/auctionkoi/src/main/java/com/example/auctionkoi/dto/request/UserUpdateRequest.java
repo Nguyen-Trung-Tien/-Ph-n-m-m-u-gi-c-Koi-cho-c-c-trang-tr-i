@@ -8,10 +8,7 @@ public class UserUpdateRequest {
     private String email;
     private Integer wallet;
 
-
-
     // Getters and Setters
-
 
     public Integer getWallet() {
         return wallet;

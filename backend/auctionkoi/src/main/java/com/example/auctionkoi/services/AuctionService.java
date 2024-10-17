@@ -27,7 +27,7 @@ public class AuctionService {
 
     @Autowired
     private BreederRepository breederRepository;
-
+// lấy tất cả các phiên đấu giá của koi bằng kết thúc thư viện cuối này cách lỗi với hàm getAllAuctions
     public List<AuctionRequest> getAllAuctions() {
         List<AuctionRequest> auctionRequests = new ArrayList<>();
         List<Bid> bids = bidRepository.findAll();
@@ -35,7 +35,6 @@ public class AuctionService {
         for (Bid bid : bids) {
             Koi koi = bid.getKoi();
             Breeder breeder = breederRepository.findById(koi.getBreederId()).orElse(null);
-
             if (koi != null && breeder != null) {
                 AuctionRequest dto = new AuctionRequest();
                 dto.setBidId(bid.getBidId());
@@ -59,7 +58,7 @@ public class AuctionService {
 
         return auctionRequests;
     }
-
+    //  lấy tất cả các phiên đấu giá của koi bằng kết thúc thư viện cuối
     public List<AuctionRequest> getAuctionsByKoiId(Long koiId) {
         List<AuctionRequest> auctionRequests = new ArrayList<>();
         List<Bid> bids = bidRepository.findAllByKoi_KoiId(koiId);

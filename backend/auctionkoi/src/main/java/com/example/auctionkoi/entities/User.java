@@ -14,10 +14,9 @@ public class User {
     private String lastName;
     private String phoneNumber;
     private String email;
-    private Integer wallet;
+    private Integer wallet; // thêm ví cho người dùng
 
     // Getters and Setters
-
 
     public String getPhoneNumber() {
         return phoneNumber;

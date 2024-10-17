@@ -11,7 +11,6 @@ public class Koi {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "koi_id")
     private Long koiId;
-
     private String koiName;
     private BigDecimal startingPrice;
     private int length;
