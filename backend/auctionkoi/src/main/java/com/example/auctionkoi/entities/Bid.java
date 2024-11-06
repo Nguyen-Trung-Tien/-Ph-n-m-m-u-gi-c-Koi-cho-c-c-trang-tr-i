@@ -3,6 +3,8 @@ package com.example.auctionkoi.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "bid")
@@ -18,19 +20,35 @@ public class Bid {
     @Column(name = "auction_start_time")
     private LocalDateTime auctionStartTime;
 
+    @Column(name = "auction_end_time")
+    private LocalDateTime auctionEndTime;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
+
     @ManyToOne
     @JoinColumn(name = "koi_id")
     private Koi koi;
+
+    @OneToMany(mappedBy = "bid")
+    private Set<AuctionTransaction> auctionTransactions = new HashSet<>();
+
 
     private int amount;
 
 
     // Getters and Setters
 
+
+    public LocalDateTime getAuctionEndTime() {
+        return auctionEndTime;
+    }
+
+    public void setAuctionEndTime(LocalDateTime auctionEndTime) {
+        this.auctionEndTime = auctionEndTime;
+    }
     public LocalDateTime getAuctionStartTime() {
         return auctionStartTime;
     }

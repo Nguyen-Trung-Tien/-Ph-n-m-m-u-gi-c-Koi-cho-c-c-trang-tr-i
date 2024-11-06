@@ -4,7 +4,9 @@ import com.example.auctionkoi.dto.request.ChangePasswordRequest;
 import com.example.auctionkoi.dto.request.UserCreationRequest;
 import com.example.auctionkoi.dto.request.UserLoginRequest;
 import com.example.auctionkoi.dto.request.UserUpdateRequest;
+import com.example.auctionkoi.entities.ActivityLog;
 import com.example.auctionkoi.entities.User;
+import com.example.auctionkoi.repositories.ActivityLogRepositories;
 import com.example.auctionkoi.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,18 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private ActivityLogRepositories activityLogRepositories;
+
+
+
+    // lưu nhật kí hoạt đông
+    private void activity(User user) {
+        ActivityLog activityLog = new ActivityLog();
+        activityLog.setUser(user);
+        activityLogRepositories.save(activityLog);
+    }
 // truy cập vào UserRepository để thực hiện các thao tác với database
     public User createUser(UserCreationRequest request) {
         if (userRepository.findByUsername(request.getUsername()).isPresent()) {
@@ -30,7 +44,13 @@ public class UserService {
         user.setPhoneNumber(request.getPhoneNumber());
         user.setEmail(request.getEmail());
         user.setWallet(10000);
-        return userRepository.save(user);
+
+        User newUser = userRepository.save(user);
+
+        //Cập nhật đăng nhập gần nhất
+        activity(user);
+
+        return newUser;
     }
 
     public List<User> getUsers() {
@@ -62,6 +82,8 @@ public class UserService {
             user.setWallet(request.getWallet());
         }
 
+        user.setRole(request.getRole());
+
         return userRepository.save(user);
     }
 
@@ -82,6 +104,7 @@ public class UserService {
         if (!user.getPassword().equals(request.getPassword())) {
             throw new RuntimeException("Invalid password");
         }
+        activity(user);
 
         return user;
     }

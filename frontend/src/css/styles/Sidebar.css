@@ -1,0 +1,181 @@
+#sidebar {
+  background: #020509; /* Màu nền */
+  grid-area: sidebar;
+  padding: 20px; /* Khoảng cách bên trong */
+  transition: transform 0.3s ease; /* Hiệu ứng chuyển động khi mở/đóng */
+  width: 250px; /* Đặt chiều rộng của sidebar */
+  position: fixed; /* Đặt vị trí cố định */
+  z-index: 1000; /* Đặt z-index cao hơn các phần khác */
+  top: 67px; /* Đặt cách navbar 60px */
+  height: calc(100% - 60px); /* Chiều cao sidebar, trừ chiều cao navbar */
+}
+
+#sidebar.hidden {
+  transform: translateX(-100%); /* Ẩn sidebar trên thiết bị nhỏ */
+}
+.sidebar__title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #f3f4f6;
+  margin-bottom: 30px;
+}
+
+.sidebar__img {
+  display: flex;
+  align-items: center;
+}
+
+.sidebar__title > div > img {
+  width: 75px;
+  object-fit: contain;
+}
+
+.sidebar__title > div > h1 {
+  font-size: 18px;
+  display: inline;
+}
+
+.sidebar__title > i {
+  font-size: 18px;
+  display: none;
+}
+
+.sidebar__menu > h2 {
+  color: #3ea175;
+  font-size: 16px;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  padding: 0 10px;
+  font-weight: 700;
+}
+
+/* Sidebar.css */
+.sidebar__link {
+  color: #f3f4f6;
+  padding: 10px;
+  border-radius: 30px;
+  margin-bottom: 5px;
+  transition: background 0.3s;
+}
+
+.sidebar__link.active_menu_link {
+  background: rgba(62, 161, 112, 0.3); /* Nền nổi bật */
+  color: #3ea175; /* Màu chữ nổi bật */
+}
+
+.sidebar__link:hover {
+  background: rgba(62, 161, 112, 0.3); /* Màu nền khi hover */
+  transform: scale(1.05); /* Phóng to nhẹ khi hover */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Đổ bóng nhẹ khi hover */
+}
+
+.active_menu_link {
+  background: rgba(62, 161, 112, 0.3);
+  color: #3ea175;
+}
+
+.sidebar__link > a {
+  text-decoration: none;
+  color: #a5aaad;
+  font-weight: 700;
+}
+
+.sidebar__link > a:hover {
+  color: #ffffff; /* Màu chữ khi hover */
+}
+
+.sidebar__link > i {
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+.sidebar__logout {
+  margin-top: 20px;
+  padding: 10px;
+  color: #e65061;
+}
+
+.sidebar__logout > a {
+  text-decoration: none;
+  color: #e65061;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.sidebar__logout > i {
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+.sidebar-responsive {
+  transform: translateX(0); /* Hiển thị sidebar khi mở */
+}
+
+@media (max-width: 768px) {
+  .icon-toggle-sidebar {
+    display: block; /* Hiển thị nút mở sidebar trên mobile */
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1001;
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  @media (max-width: 978px) {
+    #sidebar {
+      width: 200px;
+    }
+
+    .sidebar__title > i {
+      display: inline; /* Hiện icon đóng sidebar */
+    }
+  }
+
+  @media (max-width: 768px) {
+    .sidebar-responsive {
+      transform: translateX(0); /* Hiển thị sidebar khi mở */
+    }
+  }
+}
+.icon-toggle-sidebar {
+  position: fixed; /* Cố định vị trí trên màn hình */
+  left: 10px; /* Căn lề trái, bạn có thể chỉnh khoảng cách */
+  top: 50%; /* Đưa biểu tượng vào giữa theo chiều dọc */
+  transform: translateY(-50%); /* Căn chỉnh để icon thực sự nằm giữa màn hình */
+  z-index: 1001; /* Đặt z-index cao hơn các thành phần khác */
+  background-color: #333; /* Màu nền cho icon */
+  color: #fff; /* Màu chữ */
+  padding: 10px; /* Khoảng cách padding */
+  border-radius: 50%; /* Làm tròn icon */
+  cursor: pointer; /* Thay đổi con trỏ khi hover */
+}
+
+.icon-toggle-sidebar:hover {
+  background-color: #555; /* Thay đổi màu khi hover */
+}
+
+
+.slider_open{
+  margin-left:250px;
+  transition: margin-left 0.3s;
+  padding-top: 60px;
+}
+
+.slider_close{
+  margin-left:0;
+  transition:margin-left 0.3;
+  padding-top:60px;
+}
+
+@media (max-width: 768px) {
+  .slider_open{
+    margin-left:200px;
+    transition:margin-left 0.3s;
+    padding-top:60px;
+  }
+}

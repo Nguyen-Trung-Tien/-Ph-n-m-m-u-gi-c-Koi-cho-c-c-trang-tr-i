@@ -9,6 +9,8 @@ import axios from 'axios';
 const AuctionDetails = () => {
     const { id } = useParams(); 
     const [koiDetails, setKoiDetails] = useState(null);
+    const [bidDetails, setBidDetails] = useState();
+    const [auctionTransactions,setAuctionTransactions] = useState([])
     const [errorMessage, setErrorMessage] = useState('');
     const [timeRemaining, setTimeRemaining] = useState('');
     const [isAuctionEnded, setIsAuctionEnded] = useState(false);
@@ -20,11 +22,12 @@ const AuctionDetails = () => {
         const fetchKoiDetails = async () => {
             try {
                 console.log(`Fetching Koi Details for Koi ID: ${id}...`);
-                const response = await axios.get(`http://localhost:8080/auction/info/koi/${id}`);
+                const response = await axios.get(`http://localhost:8080/auction/info/addAuction/${id}`);
                 console.log("Koi Details fetched successfully:", response.data);
-                const koiData = response.data[0];
-                setKoiDetails(koiData);
-
+                const koiData = response.data;
+                setKoiDetails(koiData.bid.koi);
+                setBidDetails(koiData.bid);
+                setAuctionTransactions(koiData.auctionTransactions);
                 calculateTimeRemaining(koiData.auctionEndTime);
             } catch (error) {
                 console.error('Lỗi khi lấy chi tiết cá koi:', error);
@@ -39,7 +42,7 @@ const AuctionDetails = () => {
         let timer;
         if (koiDetails && koiDetails.auctionEndTime) {
             timer = setInterval(() => {
-                calculateTimeRemaining(koiDetails.auctionEndTime);
+                calculateTimeRemaining(bidDetails.auctionEndTime);
             }, 1000);
         }
 
@@ -49,23 +52,26 @@ const AuctionDetails = () => {
     const calculateTimeRemaining = (auctionEndTime) => {
         const endTime = new Date(auctionEndTime);
         const remainingTime = endTime - Date.now();
-    
+
         if (remainingTime > 0) {
+            const days = Math.floor(remainingTime / (1000 * 3600 * 24));
             const hours = Math.floor((remainingTime % (1000 * 3600 * 24)) / (1000 * 3600));
             const minutes = Math.floor((remainingTime % (1000 * 3600)) / (1000 * 60));
             const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
-            setTimeRemaining(`${hours}h ${minutes}m ${seconds}s`);
+
+            setTimeRemaining(`${days}d ${hours}h ${minutes}m ${seconds}s`);
             setIsAuctionEnded(false);
         } else {
             setTimeRemaining("Phiên đấu giá đã kết thúc");
             setIsAuctionEnded(true);
-            
-            if (temporaryBid) {
-                updateWallet(user.id, temporaryBid);
-                setTemporaryBid(null); 
-            }
+
+            // if (temporaryBid) {
+            //     updateWallet(user.id, temporaryBid);
+            //     setTemporaryBid(null);
+            // }
         }
     };
+
 
     const handlePlaceBid = async () => {
         if (!user) {
@@ -74,10 +80,9 @@ const AuctionDetails = () => {
         }
 
         const bidAmount = parseFloat(bidPrice);
-        const startingPrice = parseFloat(koiDetails.startingPrice);
-
-        if (bidAmount <= startingPrice) {
-            alert('Giá đấu phải cao hơn giá khởi điểm.');
+        const startingPrice = parseFloat(bidDetails.currentPrice);
+        if (bidAmount === '' || isNaN(bidAmount)||bidAmount <= startingPrice || bidAmount <= (highestPrice(auctionTransactions)===-Infinity ?0 : highestPrice(auctionTransactions))) {
+            alert('Giá đấu phải cao hơn giá khởi điểm hoặc giá cao nhật hiện tại.',highestPrice(auctionTransactions));
             return;
         }
 
@@ -92,25 +97,17 @@ const AuctionDetails = () => {
         }
 
         try {
-            const bidResponse = await axios.put(`http://localhost:8080/auction/bids/${koiDetails.bidId}`, {
-                amount: koiDetails.amount + 1,
-                currentPrice: bidAmount,
-                koiId: koiDetails.koiId,
+            const bidResponse = await axios.post(`http://localhost:8080/auction/transaction/add`, {
+                // amount: koiDetails.amount + 1,
+                price: bidAmount,
+                bidId: bidDetails.bidId,
                 userId: user.id,
-                auctionStartTime: koiDetails.auctionStartTime
+                // auctionStartTime: koiDetails.auctionStartTime
             }, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
             });
-
-            setTemporaryBid(bidAmount);
-
-            setKoiDetails((prevDetails) => ({
-                ...prevDetails,
-                currentPrice: bidAmount,
-                amount: prevDetails.amount + 1
-            }));
             setBidPrice('');
             alert(`Đặt giá đấu thành công`);
 
@@ -125,26 +122,40 @@ const AuctionDetails = () => {
     };
 
     
-    const updateWallet = async (userId, bidAmount) => {
-        const newWalletBalance = user.wallet - bidAmount; 
-    
-        try {
-            await axios.put(`http://localhost:8080/auction/users/update/${userId}`, {
-                wallet: newWalletBalance 
-            }, {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-    
-            setUser({ ...user, wallet: newWalletBalance });
-            localStorage.setItem('user', JSON.stringify({ ...user, wallet: newWalletBalance }));
-        } catch (error) {
-            console.error('Lỗi khi cập nhật wallet:', error);
-            alert('Không thể cập nhật số dư trong ví.');
-        }
-    };
-    
+    // const updateWallet = async (userId, bidAmount) => {
+    //     const newWalletBalance = user.wallet - bidAmount;
+    //
+    //     try {
+    //         await axios.put(`http://localhost:8080/auction/users/update/${userId}`, {
+    //             wallet: newWalletBalance
+    //         }, {
+    //             headers: {
+    //                 'Content-Type': 'application/json'
+    //             }
+    //         });
+    //
+    //         setUser({ ...user, wallet: newWalletBalance });
+    //         localStorage.setItem('user', JSON.stringify({ ...user, wallet: newWalletBalance }));
+    //     } catch (error) {
+    //         console.error('Lỗi khi cập nhật wallet:', error);
+    //         alert('Không thể cập nhật số dư trong ví.');
+    //     }
+    // };
+
+    //return max in auction now
+    const highestPrice = (list) => Math.max(...list.map(item => item.price));
+
+    function formatDateTime(dateTimeString) {
+        const options = {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit'
+        };
+        return new Date(dateTimeString).toLocaleDateString('vi-VN', options);
+    }
 
     if (errorMessage) {
         return <p>{errorMessage}</p>;
@@ -163,7 +174,7 @@ const AuctionDetails = () => {
                         <div className="col-md-5 auction-item-image">
                             <img src={`../img/h${koiDetails.koiId}.jpg`} alt={koiDetails.koiName} className="img-fluid" />
                         </div>
-                        <div className="col-md-7 auction-item-info">
+                        <div className="col-md-7 auction-item-info" style = {{overflowY:"scroll",maxHeight:"620px"}}>
                             <div className="container text-left">
                                 <section className="koi-info">
                                     <div className="card-header">
@@ -173,7 +184,7 @@ const AuctionDetails = () => {
                                         <div className="col-md-6 card-info">
                                             <span>
                                                 <i className="fa-solid fa-venus-mars"></i>
-                                                Sex
+                                                Gender
                                             </span>
                                             <p>{koiDetails.sex || "Unknown"}</p>
                                         </div>
@@ -189,7 +200,7 @@ const AuctionDetails = () => {
                                                 <i className="fa-solid fa-earth-americas"></i>
                                                 Breeder
                                             </span>
-                                            <p>{koiDetails.breederName || "Unknown"}</p>
+                                            <p>{koiDetails.breeder.breederName || "Unknown"}</p>
                                         </div>
                                         <div className="col-md-6 card-info">
                                             <span>
@@ -204,19 +215,19 @@ const AuctionDetails = () => {
                                     <div className="row-cols-2 row-custom d-flex flex-wrap">
                                         <div className="col card-info">
                                             <span>Starting Price</span>
-                                            <p>{koiDetails.startingPrice}$</p>
+                                            <p>{bidDetails.currentPrice}$</p>
                                         </div>
                                         <div className="col card-info">
                                             <span>Current Highest Price</span>
-                                            <p>{koiDetails.currentPrice}$</p>
+                                            <p>{highestPrice(auctionTransactions)===-Infinity ?0 : highestPrice(auctionTransactions)}$</p>
                                         </div>
                                         <div className="col card-info">
                                             <span>Start Date:</span>
-                                            <p>{koiDetails.auctionStartTime || "Hiện chưa có"}</p>
+                                            <p>{formatDateTime(bidDetails.auctionStartTime) || "Hiện chưa có"}</p>
                                         </div>
                                         <div className="col card-info">
                                             <span>End Date</span>
-                                            <p>{koiDetails.auctionEndTime || "Hiện chưa có"}</p>
+                                            <p>{formatDateTime(bidDetails.auctionEndTime )|| "Hiện chưa có"}</p>
                                         </div>
                                     </div>
                                 </section>
@@ -244,11 +255,38 @@ const AuctionDetails = () => {
                                     </div>
                                 </section>
                             </div>
+                            <div className="container_buttom">
+                                <div className="container_buttom--header">
+                                    <label>Danh sách người dùng đấu giá sản phẩm: </label>
+                                </div>
+                                {auctionTransactions
+                                    .sort((a, b) => new Date(b.transactionTime) - new Date(a.transactionTime)) // Sort in ascending order
+                                    .map((box) => (
+                                        <div className="container_buttom--box" key={box.id}>
+                                            <div className="container_buttom--box_image">
+                                                <div className="container_buttom--box_image__immg">
+                                                    <i className="fa fa-user change_size"></i>
+                                                </div>
+                                            </div>
+                                            <div className="container_buttom--box_infomation">
+                                                <div className="container_buttom--box_infomation-top">
+                                                    {box.user.firstName + " " + box.user.lastName}
+                                                </div>
+                                                <div className="container_buttom--infomation-bottom">
+                                                    {formatDateTime(box.transactionTime)}
+                                                </div>
+                                            </div>
+                                            <div className="container_buttom--box_price">
+                                                {box.price}$
+                                            </div>
+                                        </div>
+                                    ))}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <Footer />
+            <Footer/>
         </div>
     );
 };

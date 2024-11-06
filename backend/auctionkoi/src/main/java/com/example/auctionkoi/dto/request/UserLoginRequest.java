@@ -1,6 +1,7 @@
 package com.example.auctionkoi.dto.request;
 
 public class UserLoginRequest {
+    private boolean role;
     private String username;
     private String password;
 
@@ -19,5 +20,13 @@ public class UserLoginRequest {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isRole() {
+        return role;
+    }
+
+    public void setRole(boolean role) {
+        this.role = role;
     }
 }

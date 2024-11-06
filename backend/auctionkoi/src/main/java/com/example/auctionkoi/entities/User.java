@@ -1,6 +1,11 @@
 package com.example.auctionkoi.entities;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -8,6 +13,11 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date daySignUp;
+
     private String username;
     private String password;
     private String firstName;
@@ -15,6 +25,12 @@ public class User {
     private String phoneNumber;
     private String email;
     private Integer wallet; // thêm ví cho người dùng
+
+    @OneToMany(mappedBy = "user")
+    private Set<AuctionTransaction> auctionTransactions = new HashSet<>();
+
+    @Column(nullable = false, columnDefinition = "boolean default false")
+    private boolean role = false;
 
     // Getters and Setters
 
@@ -81,4 +97,13 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public boolean getRole() {
+        return role;
+    }
+
+    public void setRole(boolean role) {
+        this.role = role;
+    }
+
 }

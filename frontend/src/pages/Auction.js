@@ -22,7 +22,7 @@ const Auction = () => {
                 const remainingTime = {};
                 response.data.forEach(item => {
                     const endTime = new Date(item.auctionEndTime).getTime();
-                    remainingTime[item.koiId] = endTime - Date.now();
+                    remainingTime[item.bidId] = endTime - Date.now();
                 });
                 setTimeLeft(remainingTime);
             } catch (error) {
@@ -49,10 +49,29 @@ const Auction = () => {
 
     const formatTime = (timeInMillis) => {
         if (timeInMillis <= 0) return "Đã kết thúc";
-        const hours = Math.floor((timeInMillis % (1000 * 3600 * 24)) / (1000 * 3600));
-        const minutes = Math.floor((timeInMillis % (1000 * 3600)) / (1000 * 60));
-        const seconds = Math.floor((timeInMillis % (1000 * 60)) / 1000);
-        return `${hours}h ${minutes}m ${seconds}s`;
+
+        const millisecondsInSecond = 1000;
+        const secondsInMinute = 60;
+        const minutesInHour = 60;
+        const hoursInDay = 24;
+        const daysInMonth = 30; // For simplicity, assume 30 days in a month
+
+        // Calculate time components
+        const months = Math.floor(timeInMillis / (millisecondsInSecond * secondsInMinute * minutesInHour * hoursInDay * daysInMonth));
+        timeInMillis %= (millisecondsInSecond * secondsInMinute * minutesInHour * hoursInDay * daysInMonth);
+
+        const days = Math.floor(timeInMillis / (millisecondsInSecond * secondsInMinute * minutesInHour * hoursInDay));
+        timeInMillis %= (millisecondsInSecond * secondsInMinute * minutesInHour * hoursInDay);
+
+        const hours = Math.floor(timeInMillis / (millisecondsInSecond * secondsInMinute * minutesInHour));
+        timeInMillis %= (millisecondsInSecond * secondsInMinute * minutesInHour);
+
+        const minutes = Math.floor(timeInMillis / (millisecondsInSecond * secondsInMinute));
+        const seconds = Math.floor((timeInMillis % (millisecondsInSecond * secondsInMinute)) / millisecondsInSecond);
+
+        // return `${months} tháng ${days} ngày ${hours}h ${minutes}m ${seconds}s`;
+        return `${days} ngày ${hours}h ${minutes}m ${seconds}s`;
+
     };
 
     return (
@@ -65,7 +84,7 @@ const Auction = () => {
                         <div className="row row-cols-4">
                             {koiList.length > 0 ? (
                                 koiList.map(item => (
-                                    <div key={item.koiId} className="col">
+                                    <div key={item.bidId} className="col">
                                         <div className="auction-item" data-type={item.type} data-name={item.koiName} data-size={item.length} data-price={item.startingPrice}>
                                             <div className="auction-image">
                                                 <img src={`../img/h${item.koiId}.jpg`} alt="Product" />
@@ -74,8 +93,8 @@ const Auction = () => {
                                                 <h2 className="auction-title">{item.koiName}</h2>
                                                 <p className="auction-start-price">Starting Price: {item.startingPrice}$</p>
                                                 <p className="auction-current-price">Current Price: ${item.currentPrice}</p>
-                                                <p className="auction-time-left">Time Left: {formatTime(timeLeft[item.koiId])}</p>
-                                                <Link to={`/auction/${item.koiId}`} className="btn btn-primary custom-btn">View Details</Link>
+                                                <p className="auction-time-left">Time Left: {formatTime(timeLeft[item.bidId])}</p>
+                                                <Link to={`/auction/${item.bidId}`} className="btn btn-primary custom-btn">View Details</Link>
                                             </div>
                                         </div>
                                     </div>

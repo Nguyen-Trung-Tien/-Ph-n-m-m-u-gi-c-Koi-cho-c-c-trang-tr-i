@@ -20,10 +20,11 @@ public class Koi {
     @Column(name = "auction_end_time")
     private LocalDateTime auctionEndTime;
 
-    @Column(name = "breeder_id")
-    private Long breederId;
 
-    // Getters and Setters
+    @ManyToOne
+    @JoinColumn(name = "breeder_id")
+    private Breeder breeder;
+
 
 
     public String getSex() {
@@ -50,12 +51,12 @@ public class Koi {
         this.length = length;
     }
 
-    public Long getBreederId() {
-        return breederId;
+    public Breeder getBreeder() {
+        return breeder;
     }
 
-    public void setBreederId(Long breederId) {
-        this.breederId = breederId;
+    public void setBreeder(Breeder breeder) {
+        this.breeder = breeder;
     }
 
     public Long getKoiId() {

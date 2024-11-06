@@ -4,6 +4,7 @@ import '../css/login.css';
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useUser } from '../UserContext/UserContext';
+import {setRole} from "../components/admin/RoleUser";
 
 const Login = () => {
     const [username, setUsername] = useState('');
@@ -34,7 +35,8 @@ const Login = () => {
                 localStorage.setItem('isAuthenticated', 'true');
                 localStorage.setItem('user', JSON.stringify(data.user));
                 setUser(data.user); 
-                navigate('/'); 
+                navigate('/');
+                setRole(data.user.role);
             } else {
                 console.error('Đăng nhập thất bại:', data.message);
                 setErrorMessage('Tài khoản hoặc mật khẩu không đúng');
@@ -44,6 +46,10 @@ const Login = () => {
             console.error('Lỗi:', error);
             alert('Đã xảy ra lỗi, vui lòng thử lại sau!');
         });
+        setTimeout(() => {
+            window.location.reload();
+            navigate('/');
+        }, 500);
     };
 
     return (
@@ -81,6 +87,7 @@ const Login = () => {
                         <button type="submit" className="submit-button">Login</button>
                         {errorMessage && <div className="error-message">{errorMessage}</div>}
                     </form>
+
                 </div>
                 {/* End Login Form */}
                 <Footer />

@@ -1,0 +1,32 @@
+/* src/styles/App.css */
+
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #eceae7;
+  margin: 0;
+  padding: 0;
+}
+
+.app {
+  display: flex;
+  height: 100vh;
+}
+
+.content {
+  margin-left: 250px; /* Căn lề trái cho content */
+  padding: 20px;
+  flex-grow: 1;
+  background-color: #ffffff; /* Màu nền cho nội dung */
+  border-left: 1px solid #e0e0e0;
+}
+.container {
+  padding-top: 60px; /* Khoảng cách từ nội dung tới trên cùng của trang, tránh bị che bởi navbar */
+}
+/* App.css */
+
+.main-content {
+  margin-left: 250px; /* Same as the sidebar width */
+  padding: 20px; /* Add some padding to your content */
+  margin-top: 60px; /* Same as the navbar height */
+  transition: margin-left 0.3s; /* Optional smooth transition */
+}

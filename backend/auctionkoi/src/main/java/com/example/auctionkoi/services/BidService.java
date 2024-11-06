@@ -1,6 +1,7 @@
 package com.example.auctionkoi.services;
 
 import com.example.auctionkoi.entities.Bid;
+import com.example.auctionkoi.entities.User;
 import com.example.auctionkoi.repositories.BidRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,8 +14,8 @@ public class BidService {
     @Autowired
     private BidRepository bidRepository;
 
-    public List<Bid> getAllBids() {
-        return bidRepository.findAll();
+    public List<Object[]> getAllBids() {
+        return bidRepository.findAllBidAndStartPrice();
     }
 
     public Bid getBid(Long bidId) {
@@ -40,4 +41,12 @@ public class BidService {
                 .map(Bid::getCurrentPrice)
                 .orElse(0.0); // Nếu không có bid nào, trả về 0
     }
+
+
+    //lấy sản phẩm đã bán thành công
+    public List<Bid> getQuantitySellSuccessfully() {
+        return  bidRepository.findByUserIdNotNull();
+    }
+
+
 }

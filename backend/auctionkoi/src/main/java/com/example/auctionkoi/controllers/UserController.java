@@ -29,6 +29,7 @@ public class UserController {
         return userService.createUser(request);
     }
 // gọi hàm login từ UserService và trả về một ResponseEntity chứa thông tin user đã đăng ký
+
     @PostMapping("/login")
     public ResponseEntity<?> loginUser(@RequestBody UserLoginRequest request) {
         User user = userService.loginUser(request);
@@ -42,7 +43,8 @@ public class UserController {
                         "lastName", user.getLastName(),
                         "email", user.getEmail(),
                         "wallet",user.getWallet(),
-                        "phoneNumber",user.getPhoneNumber()
+                        "phoneNumber",user.getPhoneNumber(),
+                            "role",user.getRole()
                 )
         ));
     }
@@ -62,6 +64,8 @@ public class UserController {
         return userService.updateUser(userId, request);
     }
 
+
+
     @DeleteMapping("/{userId}")
     public String deleteUser(@PathVariable Long userId) {
         userService.deleteUser(userId);
@@ -79,5 +83,10 @@ public class UserController {
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"message\": \"" + response + "\"}");
         }
+    }
+
+    @GetMapping("/listUser")
+    public List<User> getAllUsers() {
+        return userService.getUsers();
     }
 }
