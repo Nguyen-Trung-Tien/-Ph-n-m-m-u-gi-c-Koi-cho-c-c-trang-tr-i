@@ -45,7 +45,7 @@ public class AuctionService {
             for (Bid bid : bids) {
                 AuctionTransaction auctionTransaction = auctionTransactionRepository.findByBidIdAndMaxPrice(bid.getBidId());
                 Koi koi = bid.getKoi();
-//                Breeder breeder = breederRepository.findById(koi.getBreederId()).orElse(null);
+//  Breeder breeder = breederRepository.findById(koi.getBreederId()).orElse(null);
 
                 if (koi != null) {
                     AuctionRequest dto = new AuctionRequest();
@@ -60,7 +60,7 @@ public class AuctionService {
                     }
 
                     dto.setKoiId(koi.getKoiId());
-//                    dto.setUserId(bid.getUser().getId());
+                    //  dto.setUserId(bid.getUser().getId());
                     dto.setAuctionStartTime(bid.getAuctionStartTime());
                     dto.setAuctionEndTime(bid.getAuctionEndTime());
                     dto.setStartingPrice(BigDecimal.valueOf(bid.getCurrentPrice().doubleValue()));

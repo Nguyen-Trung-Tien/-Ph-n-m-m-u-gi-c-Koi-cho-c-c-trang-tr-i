@@ -43,7 +43,7 @@ public class UserService {
         user.setLastName(request.getLastName());
         user.setPhoneNumber(request.getPhoneNumber());
         user.setEmail(request.getEmail());
-        user.setWallet(10000);
+        user.setWallet(900000000);
 
         User newUser = userRepository.save(user);
 

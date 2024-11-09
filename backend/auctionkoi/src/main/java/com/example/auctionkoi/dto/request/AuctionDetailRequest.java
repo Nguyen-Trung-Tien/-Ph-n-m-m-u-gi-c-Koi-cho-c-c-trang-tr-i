@@ -6,5 +6,4 @@ import com.example.auctionkoi.entities.Koi;
 
 import java.util.List;
 
-public record AuctionDetailRequest (Bid bid,
-                                    List<AuctionTransaction> auctionTransactions){}
+public record AuctionDetailRequest (Bid bid, List<AuctionTransaction> auctionTransactions){}
