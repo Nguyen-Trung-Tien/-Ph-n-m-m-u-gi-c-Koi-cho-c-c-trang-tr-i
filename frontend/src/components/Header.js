@@ -67,6 +67,9 @@ const Header = () => {
                             <nav className={`header_nav-name_option ${showOptions ? 'show' : ''}`}>
                                 <ul>
                                     <li>
+                                        <Link to="../SuccessfulAuctions" className='btn btn-account'>Success</Link>
+                                    </li>
+                                    <li>
                                         <Link to="../account" className='btn btn-account'>Account</Link>
                                     </li>
                                     <li>

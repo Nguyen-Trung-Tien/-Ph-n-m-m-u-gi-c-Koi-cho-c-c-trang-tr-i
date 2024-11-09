@@ -15,6 +15,7 @@ const AuctionDetails = () => {
     const [bidPrice, setBidPrice] = useState('');
     const { user, setUser } = useUser();
     const [temporaryBid, setTemporaryBid] = useState(null);
+    const [winner, setWinner] = useState(null);
 
     useEffect(() => {
         const fetchKoiDetails = async () => {
@@ -46,7 +47,7 @@ const AuctionDetails = () => {
         return () => clearInterval(timer); 
     }, [koiDetails]);
 
-    const calculateTimeRemaining = (auctionEndTime) => {
+    const calculateTimeRemaining = async (auctionEndTime) => {
         const endTime = new Date(auctionEndTime);
         const remainingTime = endTime - Date.now();
     
@@ -59,13 +60,24 @@ const AuctionDetails = () => {
         } else {
             setTimeRemaining("Phiên đấu giá đã kết thúc");
             setIsAuctionEnded(true);
-            
+    
             if (temporaryBid) {
                 updateWallet(user.id, temporaryBid);
-                setTemporaryBid(null); 
+                setTemporaryBid(null);
+            }
+
+            if (koiDetails && koiDetails.userId) {
+                try {
+                    const response = await axios.get(`http://localhost:8080/auction/users/${koiDetails.userId}`);
+                    setWinner(response.data);
+                } catch {
+                    console.error('Lỗi khi lấy thông tin người chiến thắng:');
+                    setErrorMessage('Không thể lấy thông tin người chiến thắng.');
+                }
             }
         }
     };
+    
 
     const handlePlaceBid = async () => {
         if (!user) {
@@ -225,23 +237,31 @@ const AuctionDetails = () => {
                                         <span>Time Remaining</span>
                                         <p>{timeRemaining}</p>
                                     </div>
-                                    <div className="Input-price-frame">
-                                        <input
-                                            className="Input-price"
-                                            type="number"
-                                            placeholder={"Mời nhập giá"}
-                                            value={bidPrice}
-                                            onChange={(e) => setBidPrice(e.target.value)}
-                                            disabled={isAuctionEnded}
-                                        />
-                                        <button
-                                            className="btn btn-primary btn-bid"
-                                            onClick={handlePlaceBid}
-                                            disabled={isAuctionEnded}
-                                        >
-                                            Place Bid
-                                        </button>
-                                    </div>
+                                    {isAuctionEnded && winner && (
+                                        <div className="time-remaining">
+                                            <span>Người chiến thắng:</span>
+                                            <p>{winner.firstName} {winner.lastName} </p>
+                                        </div>
+                                    )}
+                                    {!isAuctionEnded && (
+                                        <div className="Input-price-frame">
+                                            <input
+                                                className="Input-price"
+                                                type="number"
+                                                placeholder={"Mời nhập giá"}
+                                                value={bidPrice}
+                                                onChange={(e) => setBidPrice(e.target.value)}
+                                                disabled={isAuctionEnded}
+                                            />
+                                            <button
+                                                className="btn btn-primary btn-bid"
+                                                onClick={handlePlaceBid}
+                                                disabled={isAuctionEnded}
+                                            >
+                                                Place Bid
+                                            </button>
+                                        </div>
+                                    )}
                                 </section>
                             </div>
                         </div>

@@ -11,6 +11,7 @@ import Account from './pages/Account';
 import Auction from './pages/Auction';
 import About from './pages/About'
 import AuctionDetails from './components/AuctionDetails';
+import SuccessfulAuctions from './components/SuccessfulAuctions';
 
 const App = () => {
     return (
@@ -23,6 +24,8 @@ const App = () => {
                 <Route path='/auction' element={<Auction/>}/>
                 <Route path="/about" element={<About/>}/>
                 <Route path="/auction/:id" element={<AuctionDetails/>} />
+                <Route path="/SuccessfulAuctions/" element={<SuccessfulAuctions/>} />
+
             </Routes>
         </Router>
     );
