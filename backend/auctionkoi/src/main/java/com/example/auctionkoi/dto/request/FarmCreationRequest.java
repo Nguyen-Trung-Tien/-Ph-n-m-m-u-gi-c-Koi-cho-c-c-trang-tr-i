@@ -1,6 +1,4 @@
 package com.example.auctionkoi.dto.request;
-
-
 public class FarmCreationRequest {
 
     private String name;

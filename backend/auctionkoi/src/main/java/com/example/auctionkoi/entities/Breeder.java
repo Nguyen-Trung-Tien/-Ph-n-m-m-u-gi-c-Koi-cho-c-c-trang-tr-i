@@ -1,7 +1,6 @@
 package com.example.auctionkoi.entities;
 
 import jakarta.persistence.*;
-
 @Entity
 @Table(name = "breeders")
 public class Breeder {

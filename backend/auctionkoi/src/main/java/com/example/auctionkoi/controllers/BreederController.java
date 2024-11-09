@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/breeder")
+@CrossOrigin(origins = "http://localhost:3000")
 public class BreederController {
     @Autowired
     private BreederService breederService;
@@ -18,7 +19,7 @@ public class BreederController {
         return breederService.getBreeder(breederId);
     }
 
-    @GetMapping
+    @GetMapping("/list")
     public List<Breeder> getAllFarms() {
         return breederService.getAllBreeders();
     }

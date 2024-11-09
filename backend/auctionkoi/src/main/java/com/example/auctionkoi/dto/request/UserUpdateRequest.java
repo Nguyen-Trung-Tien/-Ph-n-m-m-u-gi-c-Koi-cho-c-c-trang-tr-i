@@ -7,11 +7,15 @@ public class UserUpdateRequest {
     private String lastName;
     private String email;
     private Integer wallet;
-
-
-
+    private boolean role;
     // Getters and Setters
 
+    public boolean getRole(){
+        return role;
+    }
+    public void setRole(boolean role) {
+        this.role = role;
+    }
 
     public Integer getWallet() {
         return wallet;
