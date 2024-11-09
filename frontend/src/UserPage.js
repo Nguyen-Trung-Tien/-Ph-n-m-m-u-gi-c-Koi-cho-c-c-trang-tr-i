@@ -1,5 +1,5 @@
 // src/App.js
-import AdminPage from './AdminPage';
+// import AdminPage from './AdminPage';
 
 import React,{useState} from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -16,13 +16,12 @@ import Auction from './pages/Auction';
 import About from './pages/About';
 
 import AuctionDetails from './components/AuctionDetails';
-import {get} from "axios";
 
 const App = () => {
     const [roleUser, setRoleUser] = useState(false);
-    console.log(typeof getRole(),getRole())
+
     return (
-        getRole()?  <AdminPage/> :
+        // !getRole?  <AdminPage/> :
         <Router>
             <Routes>
                 <Route path="/" element={<Home/>}/>
