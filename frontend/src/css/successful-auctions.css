@@ -1,0 +1,63 @@
+#successful-auction-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: rgb(213, 213, 217);
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+}
+
+h3 {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.auction-result {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.auction-result h4 {
+    font-size: 18px;
+    margin: 0 0 5px;
+    color: #2c3e50;
+}
+
+.auction-result p {
+    margin: 5px 0;
+    color: #333;
+}
+
+.auction-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.auction-info span {
+    font-weight: bold;
+}
+
+.no-results-message {
+    text-align: center;
+    color: #999;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+.error-message {
+    color: red;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
