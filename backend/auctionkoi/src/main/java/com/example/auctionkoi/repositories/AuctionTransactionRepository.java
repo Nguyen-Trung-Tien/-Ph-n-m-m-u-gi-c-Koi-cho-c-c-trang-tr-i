@@ -11,11 +11,11 @@ import java.util.List;
 @Repository
 public interface AuctionTransactionRepository extends JpaRepository<AuctionTransaction, Long> {
 
-    @Query(value = "select au.price,au.transaction_time,au.bid_id,au.user_id from auction_transaction au",nativeQuery = true)
+    @Query(value = "select au.price,au.transaction_time,au.bid_id,au.user_id from auction_transaction au",
+                    nativeQuery = true)
     List<Object[]> findByMaxPrice();
 
     List<AuctionTransaction> findAll();
-
     @Query("SELECT at FROM AuctionTransaction at WHERE at.bid.bidId = ?1 AND at.price = (SELECT MAX(at2.price) FROM AuctionTransaction at2 WHERE at2.bid.bidId = ?1)")
     AuctionTransaction findByBidIdAndMaxPrice(Long bidId);
 

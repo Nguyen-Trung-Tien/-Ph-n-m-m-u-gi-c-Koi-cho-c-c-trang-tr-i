@@ -1,6 +1,5 @@
 package com.example.auctionkoi.services;
 
-import com.example.auctionkoi.controllers.AuctionTransactionController;
 import com.example.auctionkoi.dto.request.AuctionDetailRequest;
 import com.example.auctionkoi.dto.request.AuctionRequest;
 import com.example.auctionkoi.entities.AuctionTransaction;
@@ -16,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -35,7 +33,7 @@ public class AuctionService {
 
     @Autowired
     private BreederRepository breederRepository;
-// lấy tất cả các phiên đấu giá của koi bằng kết thúc thư viện cuối này cách lỗi với hàm getAllAuctions
+    // lấy tất cả các phiên đấu giá của koi bằng kết thúc thư viện cuối
     public List<AuctionRequest> getAllAuctions() {
         List<AuctionRequest> auctionRequests = new ArrayList<>();
 
@@ -45,7 +43,7 @@ public class AuctionService {
             for (Bid bid : bids) {
                 AuctionTransaction auctionTransaction = auctionTransactionRepository.findByBidIdAndMaxPrice(bid.getBidId());
                 Koi koi = bid.getKoi();
-//  Breeder breeder = breederRepository.findById(koi.getBreederId()).orElse(null);
+    //  Breeder breeder = breederRepository.findById(koi.getBreederId()).orElse(null);
 
                 if (koi != null) {
                     AuctionRequest dto = new AuctionRequest();
@@ -127,7 +125,7 @@ public class AuctionService {
     }
 
 
-    //thay thế hàm trên
+    // Thay thế phương thức getInformationDetail trong lớp AuctionService
     public AuctionDetailRequest getInformationDetail(Long bidId) {
         try {
             List<AuctionTransaction> auctionTransactions = auctionTransactionRepository.findByBidId(bidId);
@@ -136,10 +134,9 @@ public class AuctionService {
             AuctionDetailRequest dto = new AuctionDetailRequest(bid,auctionTransactions);
             return dto;
         } catch (Exception e) {
-            // Log the exception for debugging
+            // Khi có lỗi, in ra thông báo lỗi
             System.err.println("An error occurred while fetching auction details: " + e.getMessage());
-
-            // Handle the error by returning a default value or rethrowing the exception, as appropriate
+            // Trả về một đối tượng rỗng nếu có lỗi
             return new AuctionDetailRequest(null,Collections.emptyList());
         }
     }

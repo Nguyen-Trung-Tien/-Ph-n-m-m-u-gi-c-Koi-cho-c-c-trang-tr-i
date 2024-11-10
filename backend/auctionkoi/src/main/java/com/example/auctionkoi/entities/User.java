@@ -13,11 +13,9 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date daySignUp;
-
     private String username;
     private String password;
     private String firstName;
@@ -33,7 +31,6 @@ public class User {
     private boolean role = false;
 
     // Getters and Setters
-
     public String getPhoneNumber() {
         return phoneNumber;
     }

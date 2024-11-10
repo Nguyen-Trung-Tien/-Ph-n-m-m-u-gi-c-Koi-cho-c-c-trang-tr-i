@@ -1,8 +1,6 @@
 package com.example.auctionkoi.services;
 
-import com.example.auctionkoi.dto.request.ChangeImage;
 import com.example.auctionkoi.dto.request.KoiUpdateRequest;
-import com.example.auctionkoi.dto.request.UserUpdateRequest;
 import com.example.auctionkoi.entities.Breeder;
 import com.example.auctionkoi.entities.Koi;
 import com.example.auctionkoi.repositories.BreederRepository;
@@ -26,7 +24,7 @@ public class KoiService {
 
     @Autowired
     private KoiRepository koiRepository;
-
+    // Đọc đường dẫn lưu trữ file từ application.properties
     @Value("${file.base-dir}")
     private String uploadDir;
     @Autowired
@@ -64,13 +62,10 @@ public class KoiService {
         koi.setKoiName(koiUpdateRequest.name());
         koi.setAge(koiUpdateRequest.age());
         koi.setBreeder(breederRepository.findById(Long.valueOf(koiUpdateRequest.breederId())).get());
-
         Koi newKoi = koiRepository.save(koi);
-
         System.out.println(newKoi);
         String name = "h"+newKoi.getKoiId()+".jpg";
         uploadFile(name, file);
-
         return koi;
     }
 
@@ -86,7 +81,7 @@ public class KoiService {
         Koi koi = getKoi(koiId);
         koiRepository.delete(koi);
     }
-
+//  Cập nhật thông tin của koi
     public Koi updateKoi(Long koiId,KoiUpdateRequest request, MultipartFile file) {
         Koi koi = getKoi(koiId);
 
@@ -115,6 +110,7 @@ public class KoiService {
         }
         return koiRepository.save(koi);
     }
+
     public ResponseEntity<String> change(MultipartFile file){
         String fileName = "h"+ ".jpg";
         System.out.println(fileName);

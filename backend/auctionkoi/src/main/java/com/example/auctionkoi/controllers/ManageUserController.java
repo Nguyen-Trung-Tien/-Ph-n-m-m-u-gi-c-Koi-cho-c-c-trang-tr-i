@@ -1,8 +1,5 @@
 package com.example.auctionkoi.controllers;
 
-import com.example.auctionkoi.entities.ActivityLog;
-
-
 import com.example.auctionkoi.entities.Bid;
 import com.example.auctionkoi.entities.Koi;
 import com.example.auctionkoi.entities.User;
@@ -19,7 +16,6 @@ public class ManageUserController {
 
     @Autowired
     private ActivityLogService activityLogService;
-
 
     //lấy người dùng mới đăng ký trong 1 tuần
     @GetMapping("/new")
@@ -38,6 +34,5 @@ public class ManageUserController {
     public List<Koi> getTransaction(){
         return activityLogService.history();
     }
-
 
 }

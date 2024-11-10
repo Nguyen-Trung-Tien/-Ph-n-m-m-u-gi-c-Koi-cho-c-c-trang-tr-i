@@ -35,7 +35,7 @@ public class BidService {
     public Bid createBid(Bid bid) {
         return bidRepository.save(bid);
     }
-
+    //lấy giá hiện tại của bid
     public Double getCurrentBidPrice(Long koiId) {
         return bidRepository.findTopByKoi_KoiIdOrderByCurrentPriceDesc(koiId)
                 .map(Bid::getCurrentPrice)

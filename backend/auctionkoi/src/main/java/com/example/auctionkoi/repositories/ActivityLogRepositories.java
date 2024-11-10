@@ -16,11 +16,9 @@ import com.example.auctionkoi.entities.Bid;
 
 @Repository
 public interface ActivityLogRepositories extends JpaRepository<ActivityLog, Long> {
-
     List<ActivityLog> findAll();
-
-
-    @Query(value = "SELECT a.user_id, MAX(a.up_time) AS upTime FROM activity_log a WHERE a.up_time >= ?1 GROUP BY a.user_id",nativeQuery = true)
+    @Query(value = "SELECT a.user_id, MAX(a.up_time) AS upTime FROM activity_log a WHERE a.up_time >= ?1 GROUP BY a.user_id",
+                    nativeQuery = true)
     List<Object[]> findByUpTime(Date upTime);
 
 }

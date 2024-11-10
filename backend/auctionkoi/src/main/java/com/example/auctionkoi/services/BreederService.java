@@ -13,8 +13,8 @@ public class BreederService {
     @Autowired
     private BreederRepository breederRepository;
 
+    // Tạo một Breeder mới và lưu vào database
     public Breeder createBreeder(Breeder breeder) {
-        // Kiểm tra và xử lý nếu cần thiết trước khi lưu vào DB
         return breederRepository.save(breeder);
     }
     public List<Breeder> getAllBreeders() {

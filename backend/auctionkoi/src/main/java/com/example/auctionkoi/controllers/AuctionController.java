@@ -13,6 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/info")
 @CrossOrigin(origins = "http://localhost:3000")
+
 public class AuctionController {
 
     @Autowired
@@ -29,7 +30,6 @@ public class AuctionController {
     public List<AuctionRequest> getAllAuctions() {
         return auctionService.getAllAuctions();
     }
-
 
     @GetMapping("/quantitySell")
     public int getQuantitySell() {

@@ -41,7 +41,11 @@ public class SuccessfulAuctionResultService {
         result.setFinalPrice(request.getFinalPrice());
         result.setAuctionEndTime(request.getAuctionEndTime());
         result.setBidAmount(request.getBidAmount());
-
         return successfulAuctionResultRepository.save(result);
+    }
+
+    // lấy ra tất cả các kết quả đấu giá thành công
+    public List<SuccessfulAuctionResult> getSuccessfulAuctions() {
+        return successfulAuctionResultRepository.findAll();
     }
 }

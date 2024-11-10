@@ -8,8 +8,8 @@ public class UserUpdateRequest {
     private String email;
     private Integer wallet;
     private boolean role;
-    // Getters and Setters
 
+    // Getters and Setters
     public boolean getRole(){
         return role;
     }

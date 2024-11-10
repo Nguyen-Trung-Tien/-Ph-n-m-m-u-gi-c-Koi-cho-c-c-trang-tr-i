@@ -8,8 +8,8 @@ public class UserCreationRequest {
     private String phoneNumber;
     private String email;
     private int wallet; // thêm ví cho người dùng
-    // Getters and Setters
 
+    // Getters and Setters
     public String getPhoneNumber() {
         return phoneNumber;
     }

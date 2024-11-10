@@ -23,15 +23,13 @@ public class UserService {
     @Autowired
     private ActivityLogRepositories activityLogRepositories;
 
-
-
     // lưu nhật kí hoạt đông
     private void activity(User user) {
         ActivityLog activityLog = new ActivityLog();
         activityLog.setUser(user);
         activityLogRepositories.save(activityLog);
     }
-// truy cập vào UserRepository để thực hiện các thao tác với database
+    // truy cập vào UserRepository để thực hiện các thao tác với database
     public User createUser(UserCreationRequest request) {
         if (userRepository.findByUsername(request.getUsername()).isPresent()) {
             throw new RuntimeException("Username already exists");
@@ -43,13 +41,11 @@ public class UserService {
         user.setLastName(request.getLastName());
         user.setPhoneNumber(request.getPhoneNumber());
         user.setEmail(request.getEmail());
-        user.setWallet(900000000);
-
+        user.setWallet(900000000); // Mặc định tạo tài khoản
         User newUser = userRepository.save(user);
 
         //Cập nhật đăng nhập gần nhất
         activity(user);
-
         return newUser;
     }
 
@@ -61,7 +57,7 @@ public class UserService {
         return userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
     }
-// trả về một user dựa trên id, nếu không tìm thấy user nào thì sẽ throw ra một exception
+    // trả về một user dựa trên id, nếu không tìm thấy user nào thì sẽ throw ra một exception
     public User updateUser(Long userId, UserUpdateRequest request) {
         User user = getUser(userId);
 
@@ -91,7 +87,7 @@ public class UserService {
         User user = getUser(userId);
         userRepository.delete(user);
     }
-// xóa một user dựa trên id, nếu không tìm thấy user nào thì sẽ throw ra một exception
+    // xóa một user dựa trên id, nếu không tìm thấy user nào thì sẽ throw ra một exception
     public User loginUser(UserLoginRequest request) {
         Optional<User> optionalUser = userRepository.findByUsername(request.getUsername());
 
@@ -108,7 +104,8 @@ public class UserService {
 
         return user;
     }
-// trả về một user dựa trên username và password, nếu không tìm thấy user nào thì sẽ throw ra một exception
+
+    // trả về một user dựa trên username và password
     public String changePassword(ChangePasswordRequest request) {
         User user = userRepository.findById(request.getId()).orElseThrow(() -> new RuntimeException("User not found"));
 

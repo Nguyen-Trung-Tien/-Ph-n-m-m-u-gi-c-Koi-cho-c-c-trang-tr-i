@@ -28,8 +28,8 @@ public class UserController {
     public User createUser(@RequestBody UserCreationRequest request) {
         return userService.createUser(request);
     }
-// gọi hàm login từ UserService và trả về một ResponseEntity chứa thông tin user đã đăng ký
 
+    // gọi hàm login từ UserService và trả về một ResponseEntity chứa thông tin user đã đăng ký
     @PostMapping("/login")
     public ResponseEntity<?> loginUser(@RequestBody UserLoginRequest request) {
         User user = userService.loginUser(request);
@@ -44,7 +44,7 @@ public class UserController {
                         "email", user.getEmail(),
                         "wallet",user.getWallet(),
                         "phoneNumber",user.getPhoneNumber(),
-                            "role",user.getRole()
+                        "role",user.getRole()
                 )
         ));
     }
@@ -64,14 +64,13 @@ public class UserController {
         return userService.updateUser(userId, request);
     }
 
-
-
     @DeleteMapping("/{userId}")
     public String deleteUser(@PathVariable Long userId) {
         userService.deleteUser(userId);
         return "User deleted successfully";
     }
-// gọi hàm changePassword từ UserService và trả về một ResponseEntity chứa thông tin về việc thay đổi mật khẩu
+
+    // gọi hàm changePassword từ UserService và trả về một ResponseEntity chứa thông tin về việc thay đổi mật khẩu
     @PutMapping("/change-password")
     public ResponseEntity<?> changePassword(@RequestBody ChangePasswordRequest request) {
         String response = userService.changePassword(request);
@@ -85,6 +84,7 @@ public class UserController {
         }
     }
 
+    // gọi hàm getAllUsers từ UserService và trả về một danh sách các user
     @GetMapping("/listUser")
     public List<User> getAllUsers() {
         return userService.getUsers();

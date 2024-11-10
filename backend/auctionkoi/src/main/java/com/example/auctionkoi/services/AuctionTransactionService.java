@@ -47,7 +47,6 @@ public class AuctionTransactionService {
         AuctionTransaction auctionTransaction = new AuctionTransaction();
         auctionTransaction.setPrice(request.price());
 
-
         Bid bid = bidRepository.findByBidId(request.bidId());
 
         Optional<User> user = userRepository.findById(request.userId());

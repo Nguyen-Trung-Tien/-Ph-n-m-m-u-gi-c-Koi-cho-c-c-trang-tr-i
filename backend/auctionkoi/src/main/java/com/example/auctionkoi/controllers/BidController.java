@@ -18,6 +18,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/bids")
 @CrossOrigin(origins = "http://localhost:3000")
+
 public class BidController {
 
     @Autowired
@@ -28,6 +29,7 @@ public class BidController {
 
     @Autowired
     private KoiService koiService;
+
 
     @PostMapping("/create")
     public Bid createBid(@RequestBody NewBidRequest newBidRequest) {

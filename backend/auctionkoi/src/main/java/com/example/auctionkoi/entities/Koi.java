@@ -16,16 +16,12 @@ public class Koi {
     private int length;
     private int age;
     private String sex;
-
     @Column(name = "auction_end_time")
     private LocalDateTime auctionEndTime;
-
 
     @ManyToOne
     @JoinColumn(name = "breeder_id")
     private Breeder breeder;
-
-
 
     public String getSex() {
         return sex;

@@ -1,6 +1,5 @@
 package com.example.auctionkoi.services;
 
-import com.example.auctionkoi.entities.ActivityLog;
 import com.example.auctionkoi.entities.Bid;
 import com.example.auctionkoi.entities.Koi;
 import com.example.auctionkoi.entities.User;
@@ -21,15 +20,14 @@ import java.util.Calendar;
 @Service
 public class ActivityLogService {
     private LocalDateTime now = LocalDateTime.now();
-
     private LocalDateTime dayFirstWeek(){
 
         LocalDateTime previousMonth = now.minusMonths(1);
 
-        // Adjust to the first day of the current week (Monday)
+        // Tìm ngày thứ 2 gần nhất trước hoặc bằng ngày hiện tại
         LocalDateTime firstDayOfWeek = previousMonth.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
 
-        // Set the time to 00:00:00
+        // Đặt giờ, phút, giây và mili-giây về 0
         firstDayOfWeek = firstDayOfWeek.withHour(0).withMinute(0).withSecond(0).withNano(0);
 
         return firstDayOfWeek;
@@ -46,7 +44,6 @@ public class ActivityLogService {
 
     @Autowired
     private UserRepository userRepository;
-
 
     public Date getFirstDayOfWeek(){
         // Lấy ngày hiện tại

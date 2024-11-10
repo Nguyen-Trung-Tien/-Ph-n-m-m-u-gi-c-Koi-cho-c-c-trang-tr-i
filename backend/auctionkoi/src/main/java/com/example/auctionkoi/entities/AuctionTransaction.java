@@ -10,9 +10,7 @@ public class AuctionTransaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
     private Long price;
-
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;

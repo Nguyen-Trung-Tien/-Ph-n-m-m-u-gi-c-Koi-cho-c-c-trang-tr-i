@@ -27,6 +27,7 @@ public interface BidRepository extends JpaRepository<Bid, Long> {
 
     List<Bid> findByUserIdNotNull();
 
-    @Query(value = " select b.bid_id,b.koi_id,b.auction_start_time,b.auction_end_time,k.koi_name,k.starting_price from bid b inner join koi k on b.koi_id = k.koi_id",nativeQuery = true)
+    @Query(value = " select b.bid_id,b.koi_id,b.auction_start_time,b.auction_end_time,k.koi_name,k.starting_price from bid b inner join koi k on b.koi_id = k.koi_id",
+                    nativeQuery = true)
     List<Object[]> findAllBidAndStartPrice();
 }

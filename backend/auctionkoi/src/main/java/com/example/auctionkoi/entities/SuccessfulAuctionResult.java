@@ -29,8 +29,6 @@ public class SuccessfulAuctionResult {
     @Transient
     private String koiName;
 
-
-
     // Constructors
     public SuccessfulAuctionResult() {}
 

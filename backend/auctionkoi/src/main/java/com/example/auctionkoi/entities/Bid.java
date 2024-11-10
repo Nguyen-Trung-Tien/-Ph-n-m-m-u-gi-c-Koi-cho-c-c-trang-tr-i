@@ -27,7 +27,6 @@ public class Bid {
     @JoinColumn(name = "user_id")
     private User user;
 
-
     @ManyToOne
     @JoinColumn(name = "koi_id")
     private Koi koi;
@@ -35,13 +34,10 @@ public class Bid {
     @OneToMany(mappedBy = "bid")
     private Set<AuctionTransaction> auctionTransactions = new HashSet<>();
 
-
     private int amount;
 
 
     // Getters and Setters
-
-
     public LocalDateTime getAuctionEndTime() {
         return auctionEndTime;
     }
