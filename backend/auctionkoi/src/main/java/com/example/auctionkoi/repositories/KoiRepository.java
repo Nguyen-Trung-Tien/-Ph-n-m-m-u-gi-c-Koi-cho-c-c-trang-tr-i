@@ -12,7 +12,6 @@ import java.util.List;
 @Repository
 public interface KoiRepository extends JpaRepository<Koi, Long> {
     List<Koi> findAll();
-
     List<Koi> findAllByAuctionEndTimeLessThan(LocalDateTime endTime);
     @Query(value = "SELECT k.*,b.auction_start_time from koi k left join Bid b on k.koi_id = b.koi_id  ",
                     nativeQuery = true)

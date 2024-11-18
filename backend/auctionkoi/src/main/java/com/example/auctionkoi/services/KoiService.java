@@ -111,6 +111,7 @@ public class KoiService {
         return koiRepository.save(koi);
     }
 
+    //  Cập nhật thông tin của koi
     public ResponseEntity<String> change(MultipartFile file){
         String fileName = "h"+ ".jpg";
         System.out.println(fileName);

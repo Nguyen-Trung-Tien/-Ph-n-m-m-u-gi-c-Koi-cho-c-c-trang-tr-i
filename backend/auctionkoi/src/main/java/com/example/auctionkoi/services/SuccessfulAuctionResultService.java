@@ -34,6 +34,7 @@ public class SuccessfulAuctionResultService {
         return successfulAuctionResultRepository.findByWinningBidUserId(userId);
     }
 
+    // tạo một kết quả đấu giá thành công
     public SuccessfulAuctionResult createSuccessfulAuctionResult(SuccessfulAuctionResultRequest request) {
         SuccessfulAuctionResult result = new SuccessfulAuctionResult();
         result.setKoiId(request.getKoiId());
@@ -45,7 +46,10 @@ public class SuccessfulAuctionResultService {
     }
 
     // lấy ra tất cả các kết quả đấu giá thành công
-    public List<SuccessfulAuctionResult> getSuccessfulAuctions() {
+    public List<SuccessfulAuctionResult> getAllSuccessfulAuctionResults() {
         return successfulAuctionResultRepository.findAll();
     }
+
+
+
 }

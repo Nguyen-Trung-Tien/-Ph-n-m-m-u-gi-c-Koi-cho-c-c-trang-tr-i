@@ -17,6 +17,7 @@ public class BreederService {
     public Breeder createBreeder(Breeder breeder) {
         return breederRepository.save(breeder);
     }
+
     public List<Breeder> getAllBreeders() {
         return breederRepository.findAll();
     }
