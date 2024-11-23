@@ -105,7 +105,7 @@ public class AuctionService {
                 }
 
                 dto.setKoiId(koi.getKoiId());
-//                dto.setUserId(bid.getUser().getId());
+                dto.setUserId(bid.getUser().getId());
                 dto.setAuctionStartTime(bid.getAuctionStartTime());
                 dto.setAuctionEndTime(bid.getAuctionEndTime());
                 dto.setStartingPrice(BigDecimal.valueOf(bid.getCurrentPrice().doubleValue()));

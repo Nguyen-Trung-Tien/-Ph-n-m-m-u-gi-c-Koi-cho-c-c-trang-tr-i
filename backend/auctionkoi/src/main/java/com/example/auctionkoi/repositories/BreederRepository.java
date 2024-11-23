@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface BreederRepository extends JpaRepository<Breeder, Long> {
     List<Breeder> findAll();
+
 }

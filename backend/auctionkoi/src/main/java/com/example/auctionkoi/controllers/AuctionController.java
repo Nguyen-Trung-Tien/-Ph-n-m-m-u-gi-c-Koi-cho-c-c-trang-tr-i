@@ -42,4 +42,5 @@ public class AuctionController {
         return auctionService.getInformationDetail(id);
     }
 
+
 }

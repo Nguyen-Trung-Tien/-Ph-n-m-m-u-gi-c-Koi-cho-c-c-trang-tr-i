@@ -48,7 +48,8 @@ public class UserController {
                 )
         ));
     }
-// gọi hàm getUsers từ UserService và trả về một danh sách các user
+
+    // gọi hàm getUsers từ UserService và trả về một danh sách các user
     @GetMapping
     public List<User> getUsers() {
         return userService.getUsers();

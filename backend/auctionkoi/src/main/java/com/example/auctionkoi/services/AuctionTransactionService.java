@@ -43,6 +43,7 @@ public class AuctionTransactionService {
         this.auctionTransactionRepository = auctionTransactionRepository;
     }
 
+    // Tạo AuctionTransaction và lưu vào database
     public AuctionTransaction AddBidRequest(AuctionTransactionRequest request){
         AuctionTransaction auctionTransaction = new AuctionTransaction();
         auctionTransaction.setPrice(request.price());

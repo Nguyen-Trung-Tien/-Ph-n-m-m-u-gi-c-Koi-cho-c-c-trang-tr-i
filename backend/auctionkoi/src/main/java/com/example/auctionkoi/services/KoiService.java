@@ -54,6 +54,7 @@ public class KoiService {
         }
     }
 
+
     public Koi createKoi(KoiUpdateRequest koiUpdateRequest,MultipartFile file) {
         Koi koi = new Koi();
         koi.setLength(koiUpdateRequest.size());
@@ -81,7 +82,8 @@ public class KoiService {
         Koi koi = getKoi(koiId);
         koiRepository.delete(koi);
     }
-//  Cập nhật thông tin của koi
+
+    // Cập nhật thông tin của koi
     public Koi updateKoi(Long koiId,KoiUpdateRequest request, MultipartFile file) {
         Koi koi = getKoi(koiId);
 

@@ -49,7 +49,4 @@ public class SuccessfulAuctionResultService {
     public List<SuccessfulAuctionResult> getAllSuccessfulAuctionResults() {
         return successfulAuctionResultRepository.findAll();
     }
-
-
-
 }

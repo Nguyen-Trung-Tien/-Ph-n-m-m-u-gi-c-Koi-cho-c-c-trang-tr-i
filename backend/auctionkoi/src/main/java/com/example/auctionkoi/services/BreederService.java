@@ -18,19 +18,23 @@ public class BreederService {
         return breederRepository.save(breeder);
     }
 
+    // lấy tất cả các Breeder trong database
     public List<Breeder> getAllBreeders() {
         return breederRepository.findAll();
     }
 
+    // lấy một Breeder dựa trên id
     public Breeder getBreeder(Long BreederId) {
         return breederRepository.findById(BreederId).orElse(null);
     }
 
+    // xóa môn Breeder dựa trên id
     public void deleteFarm(Long BreederId) {
         Breeder breeder = getBreeder(BreederId);
         breederRepository.delete(breeder);
     }
 
+    // cập nhật một Breeder dựa trên id
     public Breeder updateFarm(Breeder breeder) {
         return breederRepository.save(breeder);
     }

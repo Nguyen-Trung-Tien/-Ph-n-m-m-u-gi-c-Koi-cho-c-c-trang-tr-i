@@ -41,7 +41,7 @@ public class UserService {
         user.setLastName(request.getLastName());
         user.setPhoneNumber(request.getPhoneNumber());
         user.setEmail(request.getEmail());
-        user.setWallet(900000000); // Mặc định tạo tài khoản
+        user.setWallet(0); // Mặc định tạo tài khoản
         User newUser = userRepository.save(user);
 
         //Cập nhật đăng nhập gần nhất
@@ -52,7 +52,7 @@ public class UserService {
     public List<User> getUsers() {
         return userRepository.findAll();
     }
-
+    // truy cập vào UserRepository để thực hiện các thao tác với database
     public User getUser(Long userId) {
         return userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
@@ -82,7 +82,7 @@ public class UserService {
 
         return userRepository.save(user);
     }
-
+    // xóa một user dựa trên id
     public void deleteUser(Long userId) {
         User user = getUser(userId);
         userRepository.delete(user);

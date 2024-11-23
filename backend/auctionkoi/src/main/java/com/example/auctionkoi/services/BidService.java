@@ -42,7 +42,6 @@ public class BidService {
                 .orElse(0.0); // Nếu không có bid nào, trả về 0
     }
 
-
     //lấy sản phẩm đã bán thành công
     public List<Bid> getQuantitySellSuccessfully() {
         return  bidRepository.findByUserIdNotNull();
