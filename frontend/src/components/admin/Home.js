@@ -1,5 +1,5 @@
 // src/components/Main.js
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
 import "../../css/styles/Home.css";
@@ -12,32 +12,38 @@ const Main = () => {
 
   useEffect(() => {
     const getInfoWeek = async () => {
-      console.log('Fetching information for week');
-
+      console.log("Fetching information for week");
+      // goi api
       try {
-        const newInfo = await axios.get(`http://localhost:8080/auction/manage/new`);
-        const futureInfo = await axios.get(`http://localhost:8080/auction/manage/future`);
-        const transactionInfo = await axios.get(`http://localhost:8080/auction/manage/transaction`);
-        const selledInfo = await axios.get(`http://localhost:8080/auction/bids/selled`);
-        console.log('as',selledInfo.data );
+        const newInfo = await axios.get(
+          `http://localhost:8080/auction/manage/new`
+        );
+        const futureInfo = await axios.get(
+          `http://localhost:8080/auction/manage/future`
+        );
+        const transactionInfo = await axios.get(
+          `http://localhost:8080/auction/manage/transaction`
+        );
+        const selledInfo = await axios.get(
+          `http://localhost:8080/auction/bids/selled`
+        );
+        console.log("as", selledInfo.data);
         const counts = [
           newInfo.data.length || 0, // Thay đổi tùy theo cấu trúc thực tế
           futureInfo.data.length || 0,
           transactionInfo.data.length || 0,
-          selledInfo.data.length || 0
+          selledInfo.data.length || 0,
         ];
 
         // Cập nhật state với số lượng
         setInfoWeek(counts);
-
       } catch (error) {
-        console.error('Error fetching week information', error);
+        console.error("Error fetching week information", error);
       }
     };
 
     getInfoWeek();
   }, []);
-
 
   return (
     <main>
@@ -49,7 +55,7 @@ const Main = () => {
         </div>
 
         <div className="main__cards">
-          {/* Card for list of participants */}
+          {/*danh sách người tham gia */}
           <Link to="/users" className="card">
             <div className="card_inner">
               <i className="fa fa-user fa-2x text-lightblue"></i>
@@ -70,7 +76,7 @@ const Main = () => {
             </div>
           </Link>
 
-          {/* Card for Auction History */}
+          {/* lich su dau gia */}
           <Link to="/auction-history" className="card">
             <div className="card_inner">
               <i className="fa fa-video-camera fa-2x text-yellow"></i>
@@ -81,7 +87,7 @@ const Main = () => {
             </div>
           </Link>
 
-          {/* Card for Auction Management */}
+          {/* quan li dau gia */}
           <Link to="/products" className="card">
             <div className="card_inner">
               <i className="fa fa-thumbs-up fa-2x text-green"></i>
